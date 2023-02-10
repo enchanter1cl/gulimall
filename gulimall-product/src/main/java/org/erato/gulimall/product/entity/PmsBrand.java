@@ -1,5 +1,10 @@
 package org.erato.gulimall.product.entity;
 
+import com.erato.demomall.common.validation.OnAdd;
+import com.erato.demomall.common.validation.OnUpdate;
+import org.hibernate.validator.constraints.URL;
+
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 /**
@@ -13,14 +18,19 @@ public class PmsBrand implements Serializable {
     /**
      * 品牌id
      */
+    @NotNull(message = "'brandId' is required on UPDATE",groups = OnUpdate.class)
+    @Null(message = "'brandId' should be absent on ADD",groups = OnAdd.class)
     private Long brandId;
     /**
      * 品牌名
      */
+    @NotBlank(message = "'name' should not be blank",groups = {OnAdd.class, OnUpdate.class})
     private String name;
     /**
      * 品牌logo地址
      */
+    @NotBlank(groups = {OnAdd.class, OnUpdate.class})
+    @URL(message = "'logo' must be an url",groups={OnAdd.class,OnUpdate.class})
     private String logo;
     /**
      * 介绍
@@ -29,14 +39,19 @@ public class PmsBrand implements Serializable {
     /**
      * 显示状态[0-不显示；1-显示]
      */
+    @NotNull(groups = {OnAdd.class, OnUpdate.class})
     private Integer showStatus;
     /**
      * 检索首字母
      */
+    @NotEmpty(groups = OnAdd.class)
+    @Pattern(regexp="^[a-zA-Z]$",message = "'firstLetter must be a letter'")
     private String firstLetter;
     /**
      * 排序
      */
+    @NotNull(groups = OnAdd.class)
+    @Min(value = 0,message = "'sort' >= 0", groups = {OnAdd.class, OnUpdate.class})
     private Integer sort;
 
 

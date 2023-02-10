@@ -1,10 +1,13 @@
 package org.erato.gulimall.product.controller;
 
+import com.erato.demomall.common.validation.OnAdd;
+import com.erato.demomall.common.validation.OnUpdate;
 import org.erato.gulimall.product.entity.PmsBrand;
 import org.erato.gulimall.product.service.PmsBrandService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -54,7 +57,7 @@ public class PmsBrandController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<PmsBrand> add(PmsBrand pmsBrand) {
+    public ResponseEntity<PmsBrand> add(@Validated(OnAdd.class) @RequestBody PmsBrand pmsBrand) {
         return ResponseEntity.ok(this.pmsBrandService.insert(pmsBrand));
     }
 
@@ -65,7 +68,7 @@ public class PmsBrandController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<PmsBrand> edit(PmsBrand pmsBrand) {
+    public ResponseEntity<PmsBrand> edit(@Validated(OnUpdate.class) @RequestBody PmsBrand pmsBrand) {
         return ResponseEntity.ok(this.pmsBrandService.update(pmsBrand));
     }
 
