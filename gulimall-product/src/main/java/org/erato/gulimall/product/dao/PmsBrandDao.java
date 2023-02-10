@@ -1,5 +1,6 @@
 package org.erato.gulimall.product.dao;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.erato.gulimall.product.entity.PmsBrand;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author makejava
  * @since 2023-02-03 23:05:10
  */
+@Mapper
 public interface PmsBrandDao {
 
     /**
