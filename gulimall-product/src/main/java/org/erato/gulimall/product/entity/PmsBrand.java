@@ -35,7 +35,7 @@ public class PmsBrand implements Serializable {
     /**
      * 介绍
      */
-    private String descript;
+    private String description;
     /**
      * 显示状态[0-不显示；1-显示]
      */
@@ -45,7 +45,7 @@ public class PmsBrand implements Serializable {
      * 检索首字母
      */
     @NotEmpty(groups = OnAdd.class)
-    @Pattern(regexp="^[a-zA-Z]$",message = "'firstLetter must be a letter'")
+    @Pattern(regexp="^[a-zA-Z]$",message = "'firstLetter' must be a letter")
     private String firstLetter;
     /**
      * 排序
@@ -79,12 +79,12 @@ public class PmsBrand implements Serializable {
         this.logo = logo;
     }
 
-    public String getDescript() {
-        return descript;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescript(String descript) {
-        this.descript = descript;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getShowStatus() {
