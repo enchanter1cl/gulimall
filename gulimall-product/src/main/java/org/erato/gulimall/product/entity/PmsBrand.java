@@ -2,6 +2,9 @@ package org.erato.gulimall.product.entity;
 
 import com.erato.demomall.common.validation.OnAdd;
 import com.erato.demomall.common.validation.OnUpdate;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.*;
@@ -13,6 +16,9 @@ import java.io.Serializable;
  * @author makejava
  * @since 2023-02-03 23:05:10
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class PmsBrand implements Serializable {
     private static final long serialVersionUID = 555918085232959157L;
     /**
@@ -24,12 +30,12 @@ public class PmsBrand implements Serializable {
     /**
      * 品牌名
      */
-    @NotBlank(message = "'name' should not be blank",groups = {OnAdd.class, OnUpdate.class})
+    @NotBlank(message = "'name' should not be blank",groups = {OnAdd.class})
     private String name;
     /**
      * 品牌logo地址
      */
-    @NotBlank(groups = {OnAdd.class, OnUpdate.class})
+    @NotBlank(groups = {OnAdd.class})
     @URL(message = "'logo' must be an url",groups={OnAdd.class,OnUpdate.class})
     private String logo;
     /**
@@ -39,7 +45,7 @@ public class PmsBrand implements Serializable {
     /**
      * 显示状态[0-不显示；1-显示]
      */
-    @NotNull(groups = {OnAdd.class, OnUpdate.class})
+    @NotNull(groups = {OnAdd.class})
     private Integer showStatus;
     /**
      * 检索首字母
@@ -53,63 +59,6 @@ public class PmsBrand implements Serializable {
     @NotNull(groups = OnAdd.class)
     @Min(value = 0,message = "'sort' >= 0", groups = {OnAdd.class, OnUpdate.class})
     private Integer sort;
-
-
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLogo() {
-        return logo;
-    }
-
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getShowStatus() {
-        return showStatus;
-    }
-
-    public void setShowStatus(Integer showStatus) {
-        this.showStatus = showStatus;
-    }
-
-    public String getFirstLetter() {
-        return firstLetter;
-    }
-
-    public void setFirstLetter(String firstLetter) {
-        this.firstLetter = firstLetter;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
 
 }
 

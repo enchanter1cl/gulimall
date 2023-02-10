@@ -6,7 +6,7 @@
         <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="logo" column="logo" jdbcType="VARCHAR"/>
-        <result property="descript" column="descript" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="showStatus" column="show_status" jdbcType="INTEGER"/>
         <result property="firstLetter" column="first_letter" jdbcType="VARCHAR"/>
         <result property="sort" column="sort" jdbcType="INTEGER"/>
@@ -15,7 +15,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="PmsBrandMap">
         select
-          brand_id, name, logo, descript, show_status, first_letter, sort
+          brand_id, name, logo, description, show_status, first_letter, sort
         from pms_brand
         where brand_id = #{brandId}
     </select>
@@ -23,7 +23,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="PmsBrandMap">
         select
-          brand_id, name, logo, descript, show_status, first_letter, sort
+          brand_id, name, logo, description, show_status, first_letter, sort
         from pms_brand
         <where>
             <if test="brandId != null">
@@ -35,8 +35,8 @@
             <if test="logo != null and logo != ''">
                 and logo = #{logo}
             </if>
-            <if test="descript != null and descript != ''">
-                and descript = #{descript}
+            <if test="description != null and description != ''">
+                and description = #{description}
             </if>
             <if test="showStatus != null">
                 and show_status = #{showStatus}
@@ -65,8 +65,8 @@
             <if test="logo != null and logo != ''">
                 and logo = #{logo}
             </if>
-            <if test="descript != null and descript != ''">
-                and descript = #{descript}
+            <if test="description != null and description != ''">
+                and description = #{description}
             </if>
             <if test="showStatus != null">
                 and show_status = #{showStatus}
@@ -82,28 +82,28 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="brandId" useGeneratedKeys="true">
-        insert into pms_brand(name, logo, descript, show_status, first_letter, sort)
-        values (#{name}, #{logo}, #{descript}, #{showStatus}, #{firstLetter}, #{sort})
+        insert into pms_brand(name, logo, description, show_status, first_letter, sort)
+        values (#{name}, #{logo}, #{description}, #{showStatus}, #{firstLetter}, #{sort})
     </insert>
 
     <insert id="insertBatch" keyProperty="brandId" useGeneratedKeys="true">
-        insert into pms_brand(name, logo, descript, show_status, first_letter, sort)
+        insert into pms_brand(name, logo, description, show_status, first_letter, sort)
         values
         <foreach collection="entities" item="entity" separator=",">
-        (#{entity.name}, #{entity.logo}, #{entity.descript}, #{entity.showStatus}, #{entity.firstLetter}, #{entity.sort})
+        (#{entity.name}, #{entity.logo}, #{entity.description}, #{entity.showStatus}, #{entity.firstLetter}, #{entity.sort})
         </foreach>
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="brandId" useGeneratedKeys="true">
-        insert into pms_brand(name, logo, descript, show_status, first_letter, sort)
+        insert into pms_brand(name, logo, description, show_status, first_letter, sort)
         values
         <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.logo}, #{entity.descript}, #{entity.showStatus}, #{entity.firstLetter}, #{entity.sort})
+            (#{entity.name}, #{entity.logo}, #{entity.description}, #{entity.showStatus}, #{entity.firstLetter}, #{entity.sort})
         </foreach>
         on duplicate key update
         name = values(name),
         logo = values(logo),
-        descript = values(descript),
+        description = values(description),
         show_status = values(show_status),
         first_letter = values(first_letter),
         sort = values(sort)
@@ -119,8 +119,8 @@
             <if test="logo != null and logo != ''">
                 logo = #{logo},
             </if>
-            <if test="descript != null and descript != ''">
-                descript = #{descript},
+            <if test="description != null and description != ''">
+                description = #{description},
             </if>
             <if test="showStatus != null">
                 show_status = #{showStatus},

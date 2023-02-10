@@ -1,5 +1,8 @@
 package org.erato.gulimall.product.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import java.io.Serializable;
@@ -11,6 +14,9 @@ import java.io.Serializable;
  * @since 2023-01-01 12:49:21
  */
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class PmsAttr implements Serializable {
     private static final long serialVersionUID = -47028816791006605L;
@@ -50,79 +56,5 @@ public class PmsAttr implements Serializable {
      * 快速展示【是否展示在介绍上；0-否 1-是】，在sku中仍然可以调整
      */
     private Integer showDesc;
-
-
-    public Long getAttrId() {
-        return attrId;
-    }
-
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
-    }
-
-    public String getAttrName() {
-        return attrName;
-    }
-
-    public void setAttrName(String attrName) {
-        this.attrName = attrName;
-    }
-
-    public Integer getSearchType() {
-        return searchType;
-    }
-
-    public void setSearchType(Integer searchType) {
-        this.searchType = searchType;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public String getValueSelect() {
-        return valueSelect;
-    }
-
-    public void setValueSelect(String valueSelect) {
-        this.valueSelect = valueSelect;
-    }
-
-    public Integer getAttrType() {
-        return attrType;
-    }
-
-    public void setAttrType(Integer attrType) {
-        this.attrType = attrType;
-    }
-
-    public Long getEnable() {
-        return enable;
-    }
-
-    public void setEnable(Long enable) {
-        this.enable = enable;
-    }
-
-    public Long getCatalogId() {
-        return catalogId;
-    }
-
-    public void setCatalogId(Long catalogId) {
-        this.catalogId = catalogId;
-    }
-
-    public Integer getShowDesc() {
-        return showDesc;
-    }
-
-    public void setShowDesc(Integer showDesc) {
-        this.showDesc = showDesc;
-    }
-
 }
 
