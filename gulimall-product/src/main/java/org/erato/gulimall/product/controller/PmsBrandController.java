@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @since 2023-02-03 23:05:10
  */
 @RestController
-@RequestMapping("pmsBrand")
+@RequestMapping("product/pmsBrand")
 public class PmsBrandController {
     /**
      * 服务对象
