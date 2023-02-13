@@ -1,10 +1,9 @@
 package org.erato.gulimall.product.dao;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.erato.gulimall.product.entity.PmsAttr;
+import org.erato.gulimall.product.entity.Attr;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -23,32 +22,32 @@ public interface PmsAttrDao {
      * @param attrId 主键
      * @return 实例对象
      */
-    PmsAttr queryById(Long attrId);
+    Attr queryById(Long attrId);
 
     /**
      * 查询指定行数据
      *
-     * @param pmsAttr 查询条件
+     * @param attr 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<PmsAttr> queryAllByLimit(PmsAttr pmsAttr, @Param("pageable") Pageable pageable);
+    List<Attr> queryAllByLimit(Attr attr, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param pmsAttr 查询条件
+     * @param attr 查询条件
      * @return 总行数
      */
-    long count(PmsAttr pmsAttr);
+    long count(Attr attr);
 
     /**
      * 新增数据
      *
-     * @param pmsAttr 实例对象
+     * @param attr 实例对象
      * @return 影响行数
      */
-    int insert(PmsAttr pmsAttr);
+    int insert(Attr attr);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
@@ -56,7 +55,7 @@ public interface PmsAttrDao {
      * @param entities List<PmsAttr> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<PmsAttr> entities);
+    int insertBatch(@Param("entities") List<Attr> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
@@ -65,15 +64,15 @@ public interface PmsAttrDao {
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<PmsAttr> entities);
+    int insertOrUpdateBatch(@Param("entities") List<Attr> entities);
 
     /**
      * 修改数据
      *
-     * @param pmsAttr 实例对象
+     * @param attr 实例对象
      * @return 影响行数
      */
-    int update(PmsAttr pmsAttr);
+    int update(Attr attr);
 
     /**
      * 通过主键删除数据

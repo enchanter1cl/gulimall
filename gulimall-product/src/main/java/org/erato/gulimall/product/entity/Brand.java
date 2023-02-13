@@ -19,7 +19,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PmsBrand implements Serializable {
+public class Brand implements Serializable {
     private static final long serialVersionUID = 555918085232959157L;
     /**
      * 品牌id

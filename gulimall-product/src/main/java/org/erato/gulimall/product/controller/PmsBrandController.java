@@ -2,10 +2,8 @@ package org.erato.gulimall.product.controller;
 
 import com.erato.demomall.common.validation.OnAdd;
 import com.erato.demomall.common.validation.OnUpdate;
-import org.erato.gulimall.product.entity.PmsBrand;
+import org.erato.gulimall.product.entity.Brand;
 import org.erato.gulimall.product.service.PmsBrandService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import vo.CommonResp;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -38,10 +36,15 @@ public class PmsBrandController {
 //    }
     
     @GetMapping("/filter")
-    public CommonResp<PmsBrand> queryWithFilter(
+    public CommonResp<Brand> queryWithFilter(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String firstLetter,
+            @RequestParam(required = false) Integer sort,
             @RequestParam(required = false, defaultValue = "1") int curPage,
             @RequestParam(required = false, defaultValue = "5") int pageSize) {
-        return CommonResp.ok(new PmsBrand());
+    
+        Brand brand = new Brand();
+        return CommonResp.ok(new Brand());
     }
 
     /**
@@ -51,30 +54,30 @@ public class PmsBrandController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public CommonResp<PmsBrand> queryById(@PathVariable("id") Long id) {
+    public CommonResp<Brand> queryById(@PathVariable("id") Long id) {
         return CommonResp.ok(this.pmsBrandService.queryById(id));
     }
 
     /**
      * 新增数据
      *
-     * @param pmsBrand 实体
+     * @param brand 实体
      * @return 新增结果
      */
     @PostMapping
-    public CommonResp<PmsBrand> add(@Validated(OnAdd.class) @RequestBody PmsBrand pmsBrand) {
-        return CommonResp.ok(this.pmsBrandService.insert(pmsBrand));
+    public CommonResp<Brand> add(@Validated(OnAdd.class) @RequestBody Brand brand) {
+        return CommonResp.ok(this.pmsBrandService.insert(brand));
     }
 
     /**
      * 编辑数据
      *
-     * @param pmsBrand 实体
+     * @param brand 实体
      * @return 编辑结果
      */
     @PutMapping
-    public CommonResp<PmsBrand> edit(@Validated(OnUpdate.class) @RequestBody PmsBrand pmsBrand) {
-        return CommonResp.ok(this.pmsBrandService.update(pmsBrand));
+    public CommonResp<Brand> edit(@Validated(OnUpdate.class) @RequestBody Brand brand) {
+        return CommonResp.ok(this.pmsBrandService.update(brand));
     }
 
     /**

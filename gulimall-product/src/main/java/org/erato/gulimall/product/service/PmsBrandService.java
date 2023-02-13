@@ -1,6 +1,6 @@
 package org.erato.gulimall.product.service;
 
-import org.erato.gulimall.product.entity.PmsBrand;
+import org.erato.gulimall.product.entity.Brand;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,32 +18,32 @@ public interface PmsBrandService {
      * @param brandId 主键
      * @return 实例对象
      */
-    PmsBrand queryById(Long brandId);
+    Brand queryById(Long brandId);
 
     /**
      * 分页查询
      *
-     * @param pmsBrand 筛选条件
+     * @param brand 筛选条件
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    Page<PmsBrand> queryByPage(PmsBrand pmsBrand, PageRequest pageRequest);
+    Page<Brand> queryByPage(Brand brand, PageRequest pageRequest);
 
     /**
      * 新增数据
      *
-     * @param pmsBrand 实例对象
+     * @param brand 实例对象
      * @return 实例对象
      */
-    PmsBrand insert(PmsBrand pmsBrand);
+    Brand insert(Brand brand);
 
     /**
      * 修改数据
      *
-     * @param pmsBrand 实例对象
+     * @param brand 实例对象
      * @return 实例对象
      */
-    PmsBrand update(PmsBrand pmsBrand);
+    Brand update(Brand brand);
 
     /**
      * 通过主键删除数据

@@ -18,7 +18,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PmsAttr implements Serializable {
+public class Attr implements Serializable {
     private static final long serialVersionUID = -47028816791006605L;
     /**
      * 属性id

@@ -1,6 +1,6 @@
 package org.erato.gulimall.product.service.impl;
 
-import org.erato.gulimall.product.entity.PmsAttr;
+import org.erato.gulimall.product.entity.Attr;
 import org.erato.gulimall.product.dao.PmsAttrDao;
 import org.erato.gulimall.product.service.PmsAttrService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-
-import javax.annotation.Resource;
 
 /**
  * 商品属性(PmsAttr)表服务实现类
@@ -29,45 +27,45 @@ public class PmsAttrServiceImpl implements PmsAttrService {
      * @return 实例对象
      */
     @Override
-    public PmsAttr queryById(Long attrId) {
+    public Attr queryById(Long attrId) {
         return this.pmsAttrDao.queryById(attrId);
     }
 
     /**
      * 分页查询
      *
-     * @param pmsAttr 筛选条件
+     * @param attr 筛选条件
      * @param pageRequest      分页对象
      * @return 查询结果
      */
     @Override
-    public Page<PmsAttr> queryByPage(PmsAttr pmsAttr, PageRequest pageRequest) {
-        long total = this.pmsAttrDao.count(pmsAttr);
-        return new PageImpl<>(this.pmsAttrDao.queryAllByLimit(pmsAttr, pageRequest), pageRequest, total);
+    public Page<Attr> queryByPage(Attr attr, PageRequest pageRequest) {
+        long total = this.pmsAttrDao.count(attr);
+        return new PageImpl<>(this.pmsAttrDao.queryAllByLimit(attr, pageRequest), pageRequest, total);
     }
 
     /**
      * 新增数据
      *
-     * @param pmsAttr 实例对象
+     * @param attr 实例对象
      * @return 实例对象
      */
     @Override
-    public PmsAttr insert(PmsAttr pmsAttr) {
-        this.pmsAttrDao.insert(pmsAttr);
-        return pmsAttr;
+    public Attr insert(Attr attr) {
+        this.pmsAttrDao.insert(attr);
+        return attr;
     }
 
     /**
      * 修改数据
      *
-     * @param pmsAttr 实例对象
+     * @param attr 实例对象
      * @return 实例对象
      */
     @Override
-    public PmsAttr update(PmsAttr pmsAttr) {
-        this.pmsAttrDao.update(pmsAttr);
-        return this.queryById(pmsAttr.getAttrId());
+    public Attr update(Attr attr) {
+        this.pmsAttrDao.update(attr);
+        return this.queryById(attr.getAttrId());
     }
 
     /**

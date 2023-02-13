@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.erato.gulimall.product.dao.PmsBrandDao">
 
-    <resultMap type="org.erato.gulimall.product.entity.PmsBrand" id="PmsBrandMap">
+    <resultMap type="org.erato.gulimall.product.entity.Brand" id="PmsBrandMap">
         <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="logo" column="logo" jdbcType="VARCHAR"/>

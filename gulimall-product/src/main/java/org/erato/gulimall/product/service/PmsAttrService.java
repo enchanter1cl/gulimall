@@ -1,6 +1,6 @@
 package org.erato.gulimall.product.service;
 
-import org.erato.gulimall.product.entity.PmsAttr;
+import org.erato.gulimall.product.entity.Attr;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -18,32 +18,32 @@ public interface PmsAttrService {
      * @param attrId 主键
      * @return 实例对象
      */
-    PmsAttr queryById(Long attrId);
+    Attr queryById(Long attrId);
 
     /**
      * 分页查询
      *
-     * @param pmsAttr 筛选条件
+     * @param attr 筛选条件
      * @param pageRequest      分页对象
      * @return 查询结果
      */
-    Page<PmsAttr> queryByPage(PmsAttr pmsAttr, PageRequest pageRequest);
+    Page<Attr> queryByPage(Attr attr, PageRequest pageRequest);
 
     /**
      * 新增数据
      *
-     * @param pmsAttr 实例对象
+     * @param attr 实例对象
      * @return 实例对象
      */
-    PmsAttr insert(PmsAttr pmsAttr);
+    Attr insert(Attr attr);
 
     /**
      * 修改数据
      *
-     * @param pmsAttr 实例对象
+     * @param attr 实例对象
      * @return 实例对象
      */
-    PmsAttr update(PmsAttr pmsAttr);
+    Attr update(Attr attr);
 
     /**
      * 通过主键删除数据

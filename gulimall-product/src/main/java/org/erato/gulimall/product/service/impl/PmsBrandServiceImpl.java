@@ -1,6 +1,6 @@
 package org.erato.gulimall.product.service.impl;
 
-import org.erato.gulimall.product.entity.PmsBrand;
+import org.erato.gulimall.product.entity.Brand;
 import org.erato.gulimall.product.dao.PmsBrandDao;
 import org.erato.gulimall.product.service.PmsBrandService;
 import org.springframework.stereotype.Service;
@@ -28,45 +28,45 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      * @return 实例对象
      */
     @Override
-    public PmsBrand queryById(Long brandId) {
+    public Brand queryById(Long brandId) {
         return this.pmsBrandDao.queryById(brandId);
     }
 
     /**
      * 分页查询
      *
-     * @param pmsBrand 筛选条件
+     * @param brand 筛选条件
      * @param pageRequest      分页对象
      * @return 查询结果
      */
     @Override
-    public Page<PmsBrand> queryByPage(PmsBrand pmsBrand, PageRequest pageRequest) {
-        long total = this.pmsBrandDao.count(pmsBrand);
-        return new PageImpl<>(this.pmsBrandDao.queryAllByLimit(pmsBrand, pageRequest), pageRequest, total);
+    public Page<Brand> queryByPage(Brand brand, PageRequest pageRequest) {
+        long total = this.pmsBrandDao.count(brand);
+        return new PageImpl<>(this.pmsBrandDao.queryAllByLimit(brand, pageRequest), pageRequest, total);
     }
 
     /**
      * 新增数据
      *
-     * @param pmsBrand 实例对象
+     * @param brand 实例对象
      * @return 实例对象
      */
     @Override
-    public PmsBrand insert(PmsBrand pmsBrand) {
-        this.pmsBrandDao.insert(pmsBrand);
-        return pmsBrand;
+    public Brand insert(Brand brand) {
+        this.pmsBrandDao.insert(brand);
+        return brand;
     }
 
     /**
      * 修改数据
      *
-     * @param pmsBrand 实例对象
+     * @param brand 实例对象
      * @return 实例对象
      */
     @Override
-    public PmsBrand update(PmsBrand pmsBrand) {
-        this.pmsBrandDao.update(pmsBrand);
-        return this.queryById(pmsBrand.getBrandId());
+    public Brand update(Brand brand) {
+        this.pmsBrandDao.update(brand);
+        return this.queryById(brand.getBrandId());
     }
 
     /**

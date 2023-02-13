@@ -1,9 +1,7 @@
 package org.erato.gulimall.product.controller;
 
-import org.erato.gulimall.product.entity.PmsAttr;
+import org.erato.gulimall.product.entity.Attr;
 import org.erato.gulimall.product.service.PmsAttrService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import vo.CommonResp;
 
@@ -37,11 +35,11 @@ public class PmsAttrController {
 //    }
     
     @GetMapping("/filter")
-    public CommonResp<PmsAttr> queryWithFilter(
+    public CommonResp<Attr> queryWithFilter(
             @RequestParam(required = false, defaultValue = "1") int curPage,
             @RequestParam(required = false, defaultValue = "5") int pageSize
     ) {
-        return CommonResp.ok(new PmsAttr());
+        return CommonResp.ok(new Attr());
     }
 
     /**
@@ -51,30 +49,30 @@ public class PmsAttrController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public CommonResp<PmsAttr> queryById(@PathVariable("id") Long id) {
+    public CommonResp<Attr> queryById(@PathVariable("id") Long id) {
         return CommonResp.ok(this.pmsAttrService.queryById(id));
     }
 
     /**
      * 新增数据
      *
-     * @param pmsAttr 实体
+     * @param attr 实体
      * @return 新增结果
      */
     @PostMapping
-    public CommonResp<PmsAttr> add(PmsAttr pmsAttr) {
-        return CommonResp.ok(this.pmsAttrService.insert(pmsAttr));
+    public CommonResp<Attr> add(Attr attr) {
+        return CommonResp.ok(this.pmsAttrService.insert(attr));
     }
 
     /**
      * 编辑数据
      *
-     * @param pmsAttr 实体
+     * @param attr 实体
      * @return 编辑结果
      */
     @PutMapping
-    public CommonResp<PmsAttr> edit(PmsAttr pmsAttr) {
-        return CommonResp.ok(this.pmsAttrService.update(pmsAttr));
+    public CommonResp<Attr> edit(Attr attr) {
+        return CommonResp.ok(this.pmsAttrService.update(attr));
     }
 
     /**
