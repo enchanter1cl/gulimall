@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @since 2021-01-01 12:49:21
  */
 @RestController
-@RequestMapping("product/pmsAttr")
+@RequestMapping("product/attr")
 public class PmsAttrController {
     /**
      * 服务对象
