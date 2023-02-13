@@ -19,22 +19,29 @@ import javax.annotation.Resource;
  * @since 2021-02-03 23:05:10
  */
 @RestController
-@RequestMapping("product/pmsBrand")
+@RequestMapping("product/brand")
 public class PmsBrandController {
     
     @Resource
     private PmsBrandService pmsBrandService;
 
-    /**
-     * 分页查询
-     *
-     * @param pmsBrand 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public CommonResp<Page<PmsBrand>> queryByPage(PmsBrand pmsBrand, PageRequest pageRequest) {
-        return CommonResp.ok(this.pmsBrandService.queryByPage(pmsBrand, pageRequest));
+//    /**
+//     * 分页查询
+//     *
+//     * @param pmsBrand 筛选条件
+//     * @param pageRequest      分页对象
+//     * @return 查询结果
+//     */
+//    @GetMapping
+//    public CommonResp<Page<PmsBrand>> queryByPage(PmsBrand pmsBrand, PageRequest pageRequest) {
+//        return CommonResp.ok(this.pmsBrandService.queryByPage(pmsBrand, pageRequest));
+//    }
+    
+    @GetMapping("/filter")
+    public CommonResp<PmsBrand> queryWithFilter(
+            @RequestParam(required = false, defaultValue = "1") int curPage,
+            @RequestParam(required = false, defaultValue = "5") int pageSize) {
+        return CommonResp.ok(new PmsBrand());
     }
 
     /**

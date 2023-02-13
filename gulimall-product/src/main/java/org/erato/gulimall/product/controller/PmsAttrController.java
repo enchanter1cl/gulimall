@@ -24,16 +24,24 @@ public class PmsAttrController {
     @Resource
     private PmsAttrService pmsAttrService;
 
-    /**
-     * 分页查询
-     *
-     * @param pmsAttr 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @GetMapping
-    public CommonResp<Page<PmsAttr>> queryByPage(PmsAttr pmsAttr, PageRequest pageRequest) {
-        return CommonResp.ok(this.pmsAttrService.queryByPage(pmsAttr, pageRequest));
+//    /**
+//     * 分页查询
+//     *
+//     * @param pmsAttr 筛选条件
+//     * @param pageRequest      分页对象
+//     * @return 查询结果
+//     */
+//    @GetMapping
+//    public CommonResp<Page<PmsAttr>> queryByPage(PmsAttr pmsAttr, PageRequest pageRequest) {
+//        return CommonResp.ok(this.pmsAttrService.queryByPage(pmsAttr, pageRequest));
+//    }
+    
+    @GetMapping("/filter")
+    public CommonResp<PmsAttr> queryWithFilter(
+            @RequestParam(required = false, defaultValue = "1") int curPage,
+            @RequestParam(required = false, defaultValue = "5") int pageSize
+    ) {
+        return CommonResp.ok(new PmsAttr());
     }
 
     /**
