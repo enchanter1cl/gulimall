@@ -7,6 +7,7 @@ import org.erato.gulimall.product.service.PmsBrandService;
 import vo.CommonResp;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import vo.PageResp;
 
 import javax.annotation.Resource;
 
@@ -36,7 +37,7 @@ public class PmsBrandController {
 //    }
     
     @GetMapping("/filter")
-    public CommonResp<Brand> queryWithFilter(
+    public CommonResp<PageResp> queryWithFilter(
             @RequestParam(required = false) String name,
             @RequestParam(required = false) String firstLetter,
             @RequestParam(required = false) Integer sort,
@@ -44,7 +45,10 @@ public class PmsBrandController {
             @RequestParam(required = false, defaultValue = "5") int pageSize) {
     
         Brand brand = new Brand();
-        return CommonResp.ok(new Brand());
+        brand.setName(name);
+        brand.setFirstLetter(firstLetter);
+        brand.setSort(sort);
+        return CommonResp.ok(pmsBrandService.queryWithFilter(brand, curPage, pageSize));
     }
 
     /**

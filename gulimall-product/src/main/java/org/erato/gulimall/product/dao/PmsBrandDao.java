@@ -80,6 +80,7 @@ public interface PmsBrandDao {
      * @return 影响行数
      */
     int deleteById(Long brandId);
-
+    
+    List<Brand> queryWithFilter(Brand brand);
 }
 

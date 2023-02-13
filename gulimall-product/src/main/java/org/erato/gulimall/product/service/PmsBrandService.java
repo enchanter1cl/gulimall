@@ -3,6 +3,7 @@ package org.erato.gulimall.product.service;
 import org.erato.gulimall.product.entity.Brand;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import vo.PageResp;
 
 /**
  * 品牌(PmsBrand)表服务接口
@@ -24,10 +25,11 @@ public interface PmsBrandService {
      * 分页查询
      *
      * @param brand 筛选条件
-     * @param pageRequest      分页对象
+     * @param
+     * @pagesize
      * @return 查询结果
      */
-    Page<Brand> queryByPage(Brand brand, PageRequest pageRequest);
+    PageResp<Brand> queryWithFilter(Brand brand, int curPage, int pageSize);
 
     /**
      * 新增数据
@@ -52,5 +54,4 @@ public interface PmsBrandService {
      * @return 是否成功
      */
     boolean deleteById(Long brandId);
-
 }

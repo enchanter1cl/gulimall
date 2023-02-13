@@ -21,25 +21,13 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="PmsBrandMap">
-        select
-          brand_id, name, logo, description, show_status, first_letter, sort
+    <select id="queryWithFilter" resultMap="PmsBrandMap">
+        select *
+#           brand_id, name, logo, description, show_status, first_letter, sort
         from pms_brand
         <where>
-            <if test="brandId != null">
-                and brand_id = #{brandId}
-            </if>
             <if test="name != null and name != ''">
                 and name = #{name}
-            </if>
-            <if test="logo != null and logo != ''">
-                and logo = #{logo}
-            </if>
-            <if test="description != null and description != ''">
-                and description = #{description}
-            </if>
-            <if test="showStatus != null">
-                and show_status = #{showStatus}
             </if>
             <if test="firstLetter != null and firstLetter != ''">
                 and first_letter = #{firstLetter}
@@ -48,7 +36,6 @@
                 and sort = #{sort}
             </if>
         </where>
-        limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--统计总行数-->

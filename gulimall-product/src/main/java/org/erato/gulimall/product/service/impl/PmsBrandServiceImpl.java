@@ -1,14 +1,17 @@
 package org.erato.gulimall.product.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.erato.gulimall.product.entity.Brand;
 import org.erato.gulimall.product.dao.PmsBrandDao;
 import org.erato.gulimall.product.service.PmsBrandService;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-
+import vo.PageResp;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 品牌(PmsBrand)表服务实现类
@@ -31,18 +34,25 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     public Brand queryById(Long brandId) {
         return this.pmsBrandDao.queryById(brandId);
     }
-
+    
     /**
      * 分页查询
      *
      * @param brand 筛选条件
-     * @param pageRequest      分页对象
+     * @param curPage 分页信息
+     * @param pageSize 分页信息
      * @return 查询结果
      */
     @Override
-    public Page<Brand> queryByPage(Brand brand, PageRequest pageRequest) {
-        long total = this.pmsBrandDao.count(brand);
-        return new PageImpl<>(this.pmsBrandDao.queryAllByLimit(brand, pageRequest), pageRequest, total);
+    public PageResp<Brand> queryWithFilter(Brand brand, int curPage, int pageSize) {
+        PageHelper.startPage(curPage, pageSize);
+        List<Brand> brands = pmsBrandDao.queryWithFilter(brand);
+        PageResp<Brand> pageResp = new PageResp<>();
+        pageResp.setCurPage(curPage);
+        pageResp.setPageSize(pageSize);
+        pageResp.setTotal(((Page) brands).getTotal());
+        pageResp.setList(brands);
+        return pageResp;
     }
 
     /**
