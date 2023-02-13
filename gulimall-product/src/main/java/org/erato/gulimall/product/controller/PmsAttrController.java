@@ -4,11 +4,12 @@ import org.erato.gulimall.product.entity.Attr;
 import org.erato.gulimall.product.service.PmsAttrService;
 import org.springframework.web.bind.annotation.*;
 import vo.CommonResp;
-
+import vo.PageResp;
 import javax.annotation.Resource;
 
 /**
  * 商品属性(PmsAttr)表控制层
+ *
  *
  * @author zhangyuan
  * @since 2021-01-01 12:49:21
@@ -35,11 +36,19 @@ public class PmsAttrController {
 //    }
     
     @GetMapping("/filter")
-    public CommonResp<Attr> queryWithFilter(
+    public CommonResp<PageResp> queryWithFilter(
+            @RequestParam(required = false) String attrName,
+            @RequestParam(required = false) Integer attrType,
+            @RequestParam(required = false) Long categoryId,
             @RequestParam(required = false, defaultValue = "1") int curPage,
             @RequestParam(required = false, defaultValue = "5") int pageSize
     ) {
-        return CommonResp.ok(new Attr());
+    
+        Attr attr = new Attr();
+        attr.setAttrName(attrName);
+        attr.setAttrType(attrType);
+        attr.setCategoryId(categoryId);
+        return CommonResp.ok(pmsAttrService.queryWithFilter(attr, curPage, pageSize));
     }
 
     /**

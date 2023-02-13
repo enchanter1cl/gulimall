@@ -25,15 +25,6 @@ public interface PmsAttrDao {
     Attr queryById(Long attrId);
 
     /**
-     * 查询指定行数据
-     *
-     * @param attr 查询条件
-     * @param pageable         分页对象
-     * @return 对象列表
-     */
-    List<Attr> queryAllByLimit(Attr attr, @Param("pageable") Pageable pageable);
-
-    /**
      * 统计总行数
      *
      * @param attr 查询条件
@@ -81,6 +72,12 @@ public interface PmsAttrDao {
      * @return 影响行数
      */
     int deleteById(Long attrId);
-
+    
+    /**
+     * query with filter (multiple conditions)
+     * @param attr
+     * @return query result
+     */
+    List<Attr> queryWithFilter(Attr attr);
 }
 

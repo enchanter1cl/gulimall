@@ -1,13 +1,17 @@
 package org.erato.gulimall.product.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.erato.gulimall.product.entity.Attr;
 import org.erato.gulimall.product.dao.PmsAttrDao;
 import org.erato.gulimall.product.service.PmsAttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import vo.PageResp;
+
+import java.util.List;
 
 /**
  * 商品属性(PmsAttr)表服务实现类
@@ -29,19 +33,6 @@ public class PmsAttrServiceImpl implements PmsAttrService {
     @Override
     public Attr queryById(Long attrId) {
         return this.pmsAttrDao.queryById(attrId);
-    }
-
-    /**
-     * 分页查询
-     *
-     * @param attr 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    @Override
-    public Page<Attr> queryByPage(Attr attr, PageRequest pageRequest) {
-        long total = this.pmsAttrDao.count(attr);
-        return new PageImpl<>(this.pmsAttrDao.queryAllByLimit(attr, pageRequest), pageRequest, total);
     }
 
     /**
@@ -77,5 +68,18 @@ public class PmsAttrServiceImpl implements PmsAttrService {
     @Override
     public boolean deleteById(Long attrId) {
         return this.pmsAttrDao.deleteById(attrId) > 0;
+    }
+    
+    @Override
+    public PageResp queryWithFilter(Attr attr, int curPage, int pageSize) {
+        PageHelper.startPage(curPage, pageSize);
+        List<Attr> attrs = pmsAttrDao.queryWithFilter(attr);
+    
+        PageResp<Attr> pageResp = new PageResp<>();
+        pageResp.setCurPage(curPage);
+        pageResp.setPageSize(pageSize);
+        pageResp.setTotal(((Page) attrs).getTotal());
+        pageResp.setList(attrs);
+        return pageResp;
     }
 }

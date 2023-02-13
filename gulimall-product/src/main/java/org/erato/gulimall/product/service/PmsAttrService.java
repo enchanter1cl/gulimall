@@ -3,6 +3,7 @@ package org.erato.gulimall.product.service;
 import org.erato.gulimall.product.entity.Attr;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import vo.PageResp;
 
 /**
  * 商品属性(PmsAttr)表服务接口
@@ -19,15 +20,6 @@ public interface PmsAttrService {
      * @return 实例对象
      */
     Attr queryById(Long attrId);
-
-    /**
-     * 分页查询
-     *
-     * @param attr 筛选条件
-     * @param pageRequest      分页对象
-     * @return 查询结果
-     */
-    Page<Attr> queryByPage(Attr attr, PageRequest pageRequest);
 
     /**
      * 新增数据
@@ -52,5 +44,6 @@ public interface PmsAttrService {
      * @return 是否成功
      */
     boolean deleteById(Long attrId);
-
+    
+    PageResp queryWithFilter(Attr attr, int curPage, int pageSize);
 }
