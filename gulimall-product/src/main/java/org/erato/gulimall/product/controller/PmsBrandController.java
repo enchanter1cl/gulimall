@@ -6,7 +6,7 @@ import org.erato.gulimall.product.entity.PmsBrand;
 import org.erato.gulimall.product.service.PmsBrandService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
+import vo.CommonResp;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,15 +15,13 @@ import javax.annotation.Resource;
 /**
  * 品牌(PmsBrand)表控制层
  *
- * @author makejava
- * @since 2023-02-03 23:05:10
+ * @author zhangyuan
+ * @since 2021-02-03 23:05:10
  */
 @RestController
 @RequestMapping("product/pmsBrand")
 public class PmsBrandController {
-    /**
-     * 服务对象
-     */
+    
     @Resource
     private PmsBrandService pmsBrandService;
 
@@ -35,8 +33,8 @@ public class PmsBrandController {
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<PmsBrand>> queryByPage(PmsBrand pmsBrand, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.pmsBrandService.queryByPage(pmsBrand, pageRequest));
+    public CommonResp<Page<PmsBrand>> queryByPage(PmsBrand pmsBrand, PageRequest pageRequest) {
+        return CommonResp.ok(this.pmsBrandService.queryByPage(pmsBrand, pageRequest));
     }
 
     /**
@@ -46,8 +44,8 @@ public class PmsBrandController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<PmsBrand> queryById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(this.pmsBrandService.queryById(id));
+    public CommonResp<PmsBrand> queryById(@PathVariable("id") Long id) {
+        return CommonResp.ok(this.pmsBrandService.queryById(id));
     }
 
     /**
@@ -57,8 +55,8 @@ public class PmsBrandController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<PmsBrand> add(@Validated(OnAdd.class) @RequestBody PmsBrand pmsBrand) {
-        return ResponseEntity.ok(this.pmsBrandService.insert(pmsBrand));
+    public CommonResp<PmsBrand> add(@Validated(OnAdd.class) @RequestBody PmsBrand pmsBrand) {
+        return CommonResp.ok(this.pmsBrandService.insert(pmsBrand));
     }
 
     /**
@@ -68,8 +66,8 @@ public class PmsBrandController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<PmsBrand> edit(@Validated(OnUpdate.class) @RequestBody PmsBrand pmsBrand) {
-        return ResponseEntity.ok(this.pmsBrandService.update(pmsBrand));
+    public CommonResp<PmsBrand> edit(@Validated(OnUpdate.class) @RequestBody PmsBrand pmsBrand) {
+        return CommonResp.ok(this.pmsBrandService.update(pmsBrand));
     }
 
     /**
@@ -79,8 +77,8 @@ public class PmsBrandController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Long id) {
-        return ResponseEntity.ok(this.pmsBrandService.deleteById(id));
+    public CommonResp<Boolean> deleteById(Long id) {
+        return CommonResp.ok(this.pmsBrandService.deleteById(id));
     }
 
 }

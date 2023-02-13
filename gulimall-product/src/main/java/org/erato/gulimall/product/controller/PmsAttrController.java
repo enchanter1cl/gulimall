@@ -4,16 +4,16 @@ import org.erato.gulimall.product.entity.PmsAttr;
 import org.erato.gulimall.product.service.PmsAttrService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import vo.CommonResp;
 
 import javax.annotation.Resource;
 
 /**
  * 商品属性(PmsAttr)表控制层
  *
- * @author makejava
- * @since 2023-01-01 12:49:21
+ * @author zhangyuan
+ * @since 2021-01-01 12:49:21
  */
 @RestController
 @RequestMapping("product/pmsAttr")
@@ -32,8 +32,8 @@ public class PmsAttrController {
      * @return 查询结果
      */
     @GetMapping
-    public ResponseEntity<Page<PmsAttr>> queryByPage(PmsAttr pmsAttr, PageRequest pageRequest) {
-        return ResponseEntity.ok(this.pmsAttrService.queryByPage(pmsAttr, pageRequest));
+    public CommonResp<Page<PmsAttr>> queryByPage(PmsAttr pmsAttr, PageRequest pageRequest) {
+        return CommonResp.ok(this.pmsAttrService.queryByPage(pmsAttr, pageRequest));
     }
 
     /**
@@ -43,8 +43,8 @@ public class PmsAttrController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<PmsAttr> queryById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(this.pmsAttrService.queryById(id));
+    public CommonResp<PmsAttr> queryById(@PathVariable("id") Long id) {
+        return CommonResp.ok(this.pmsAttrService.queryById(id));
     }
 
     /**
@@ -54,8 +54,8 @@ public class PmsAttrController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<PmsAttr> add(PmsAttr pmsAttr) {
-        return ResponseEntity.ok(this.pmsAttrService.insert(pmsAttr));
+    public CommonResp<PmsAttr> add(PmsAttr pmsAttr) {
+        return CommonResp.ok(this.pmsAttrService.insert(pmsAttr));
     }
 
     /**
@@ -65,8 +65,8 @@ public class PmsAttrController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<PmsAttr> edit(PmsAttr pmsAttr) {
-        return ResponseEntity.ok(this.pmsAttrService.update(pmsAttr));
+    public CommonResp<PmsAttr> edit(PmsAttr pmsAttr) {
+        return CommonResp.ok(this.pmsAttrService.update(pmsAttr));
     }
 
     /**
@@ -76,8 +76,8 @@ public class PmsAttrController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Long id) {
-        return ResponseEntity.ok(this.pmsAttrService.deleteById(id));
+    public CommonResp<Boolean> deleteById(Long id) {
+        return CommonResp.ok(this.pmsAttrService.deleteById(id));
     }
 
 }

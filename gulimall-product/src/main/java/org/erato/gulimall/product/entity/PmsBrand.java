@@ -13,8 +13,8 @@ import java.io.Serializable;
 /**
  * 品牌(PmsBrand)实体类
  *
- * @author makejava
- * @since 2023-02-03 23:05:10
+ * @author zhangyuan
+ * @since 2021-02-03 23:05:10
  */
 @Data
 @AllArgsConstructor
@@ -59,6 +59,5 @@ public class PmsBrand implements Serializable {
     @NotNull(groups = OnAdd.class)
     @Min(value = 0,message = "'sort' >= 0", groups = {OnAdd.class, OnUpdate.class})
     private Integer sort;
-
 }
 

@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * 品牌(PmsBrand)表数据库访问层
  *
- * @author makejava
- * @since 2023-02-03 23:05:10
+ * @author zhangyuan
+ * @since 2021-02-03 23:05:10
  */
 @Mapper
 public interface PmsBrandDao {

@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * 商品属性(PmsAttr)表数据库访问层
  *
- * @author makejava
- * @since 2023-01-01 12:49:21
+ * @author zhangyuan
+ * @since 2021-01-01 12:49:21
  */
 @Mapper
 public interface PmsAttrDao {

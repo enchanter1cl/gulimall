@@ -10,8 +10,8 @@ import java.io.Serializable;
 /**
  * 商品属性(PmsAttr)实体类
  *
- * @author makejava
- * @since 2023-01-01 12:49:21
+ * @author zhangyuan
+ * @since 2021-01-01 12:49:21
  */
 
 @Data
