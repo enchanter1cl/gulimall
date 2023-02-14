@@ -3,8 +3,8 @@ package com.erato.demomall.product.controller;
 import com.erato.demomall.product.entity.Attr;
 import com.erato.demomall.product.service.PmsAttrService;
 import org.springframework.web.bind.annotation.*;
-import vo.CommonResp;
-import vo.PageResp;
+import com.erato.demomall.common.vo.CommonResp;
+import com.erato.demomall.common.vo.PageResp;
 import javax.annotation.Resource;
 
 /**

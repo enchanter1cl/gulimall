@@ -6,7 +6,7 @@ import com.erato.demomall.product.entity.Brand;
 import com.erato.demomall.product.dao.PmsBrandDao;
 import com.erato.demomall.product.service.PmsBrandService;
 import org.springframework.stereotype.Service;
-import vo.PageResp;
+import com.erato.demomall.common.vo.PageResp;
 import javax.annotation.Resource;
 import java.util.List;
 

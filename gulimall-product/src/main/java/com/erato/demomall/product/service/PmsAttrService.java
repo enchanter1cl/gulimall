@@ -1,7 +1,7 @@
 package com.erato.demomall.product.service;
 
 import com.erato.demomall.product.entity.Attr;
-import vo.PageResp;
+import com.erato.demomall.common.vo.PageResp;
 
 /**
  * 商品属性(PmsAttr)表服务接口

@@ -1,7 +1,7 @@
 package com.erato.demomall.product.service;
 
 import com.erato.demomall.product.entity.Brand;
-import vo.PageResp;
+import com.erato.demomall.common.vo.PageResp;
 
 /**
  * 品牌(PmsBrand)表服务接口

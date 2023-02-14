@@ -4,10 +4,10 @@ import com.erato.demomall.common.validation.OnAdd;
 import com.erato.demomall.common.validation.OnUpdate;
 import com.erato.demomall.product.entity.Brand;
 import com.erato.demomall.product.service.PmsBrandService;
-import vo.CommonResp;
+import com.erato.demomall.common.vo.CommonResp;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import vo.PageResp;
+import com.erato.demomall.common.vo.PageResp;
 
 import javax.annotation.Resource;
 
