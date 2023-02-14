@@ -3,12 +3,23 @@ package com.erato.demomall.product.service.impl;
 import com.erato.demomall.product.entity.Category;
 import com.erato.demomall.product.dao.CategoryDao;
 import com.erato.demomall.product.service.CategoryService;
+import com.erato.demomall.product.vo.CategoryVo;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 商品三级分类(Category)表服务实现类
@@ -18,8 +29,84 @@ import javax.annotation.Resource;
  */
 @Service("categoryService")
 public class CategoryServiceImpl implements CategoryService {
+    
     @Resource
     private CategoryDao categoryDao;
+    
+    @Autowired
+    StringRedisTemplate strRedisTemplate;
+    
+    @Autowired
+    ObjectMapper OBJECT_MAPPER;
+    
+    public List<CategoryVo> listWithTree() {
+        //1. Query all the categories
+        List<CategoryVo> categoryVos = this.queryAll();
+        //2. Assemble into a tree structure
+        //2.1 Find all level1 categories
+        List<CategoryVo> level1Cats = categoryVos.stream().filter(category -> category.getParentCid() == 0
+        ).map(categoryVo -> {
+            //2.2 Stuff children
+            categoryVo.setChildren(getChildren(categoryVo, categoryVos));
+            return categoryVo;
+        }).sorted(Comparator.comparingInt(catVo -> catVo.getSort() == null ? 0 : catVo.getSort())
+        ).collect(Collectors.toList());
+        return level1Cats;
+    }
+    
+    private List<CategoryVo> queryAll() {
+        /* 1. Add cache logic */
+        String categoryJSON = strRedisTemplate.opsForValue().get("categoryJSON");
+        List<CategoryVo> categoryVoList;
+        if (StringUtils.hasText(categoryJSON)) {
+            /* 2.1 If it exists in cache. */
+            try {
+                categoryVoList = OBJECT_MAPPER.readValue(categoryJSON, new TypeReference<List<CategoryVo>>() {
+                });
+                return categoryVoList;
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            /* 2.2 If it doesn't exist in cache. Query Db.  Transfer this java obj to JSON, store it into cache. */
+            categoryVoList = this.queryAllFromDb();
+            String categoryJsonValue = null;
+            try {
+                categoryJsonValue = OBJECT_MAPPER.writeValueAsString(categoryVoList);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);
+            }
+            strRedisTemplate.opsForValue().set("categoryJSON", categoryJsonValue);
+            return categoryVoList;
+        }
+    }
+    
+    /**
+     * Query all the categories
+     * @return list of  categories
+     */
+    private List<CategoryVo> queryAllFromDb(){
+        // Query all the categories
+        List<Category> categories = categoryDao.queryAll();
+        List<CategoryVo> categoryVos = categories.stream().map(category -> {
+            CategoryVo categoryVo = new CategoryVo();
+            BeanUtils.copyProperties(category, categoryVo);
+            return categoryVo;
+        }).collect(Collectors.toList());
+        return categoryVos;
+    }
+    
+    private List<CategoryVo> getChildren(CategoryVo root, List<CategoryVo> all) {
+        List<CategoryVo> children = all.stream().filter(category -> category.getParentCid() == root.getCatId()
+        ).map(category -> {
+            CategoryVo categoryVo = new CategoryVo();
+            BeanUtils.copyProperties(category, categoryVo);
+            categoryVo.setChildren(getChildren(categoryVo, all));
+            return categoryVo;
+        }).sorted(Comparator.comparingInt(CategoryVo -> (CategoryVo.getSort() == null ? 0 : CategoryVo.getSort()))
+        ).collect(Collectors.toList());
+        return children;
+    }
     
     /**
      * 通过ID查询单条数据

@@ -30,40 +30,10 @@
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="CategoryMap">
+    <select id="queryAll" resultMap="CategoryMap">
         select
         cat_id, name, parent_cid, cat_level, show_status, sort, icon, product_unit, product_count
         from pms_category
-        <where>
-            <if test="catId != null">
-                and cat_id = #{catId}
-            </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
-            <if test="parentCid != null">
-                and parent_cid = #{parentCid}
-            </if>
-            <if test="catLevel != null">
-                and cat_level = #{catLevel}
-            </if>
-            <if test="showStatus != null">
-                and show_status = #{showStatus}
-            </if>
-            <if test="sort != null">
-                and sort = #{sort}
-            </if>
-            <if test="icon != null and icon != ''">
-                and icon = #{icon}
-            </if>
-            <if test="productUnit != null and productUnit != ''">
-                and product_unit = #{productUnit}
-            </if>
-            <if test="productCount != null">
-                and product_count = #{productCount}
-            </if>
-        </where>
-        limit #{pageable.offset}, #{pageable.pageSize}
     </select>
 
     <!--统计总行数-->

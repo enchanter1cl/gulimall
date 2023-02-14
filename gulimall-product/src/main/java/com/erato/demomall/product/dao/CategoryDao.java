@@ -15,6 +15,13 @@ import java.util.List;
 public interface CategoryDao {
     
     /**
+     * query all the category
+     *
+     * @return list of categories
+     */
+    List<Category> queryAll();
+    
+    /**
      * 通过ID查询单条数据
      *
      * @param catId 主键

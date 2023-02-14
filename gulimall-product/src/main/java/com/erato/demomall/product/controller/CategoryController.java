@@ -23,6 +23,15 @@ public class CategoryController {
     private CategoryService categoryService;
     
     /**
+     * 3-level catalog of product category. Listed with structure of a tree.
+     * @return All categories listed with structure of a tree.
+     */
+    @GetMapping("/list/tree")
+    public CommonResp queryAll() {
+        return CommonResp.ok(this.categoryService.listWithTree());
+    }
+    
+    /**
      * 通过主键查询单条数据
      *
      * @param id 主键
