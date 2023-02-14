@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2021-02-03 23:05:10
  */
 @Mapper
-public interface PmsBrandDao {
+public interface BrandDao {
 
     /**
      * 通过ID查询单条数据

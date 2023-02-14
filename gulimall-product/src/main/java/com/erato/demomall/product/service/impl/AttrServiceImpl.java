@@ -1,8 +1,8 @@
 package com.erato.demomall.product.service.impl;
 
-import com.erato.demomall.product.dao.PmsAttrDao;
+import com.erato.demomall.product.dao.AttrDao;
 import com.erato.demomall.product.entity.Attr;
-import com.erato.demomall.product.service.PmsAttrService;
+import com.erato.demomall.product.service.AttrService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,9 @@ import java.util.List;
  * @since 2023-01-01 12:49:29
  */
 @Service("pmsAttrService")
-public class PmsAttrServiceImpl implements PmsAttrService {
+public class AttrServiceImpl implements AttrService {
     @Autowired
-    private PmsAttrDao pmsAttrDao;
+    private AttrDao attrDao;
 
     /**
      * 通过ID查询单条数据
@@ -30,7 +30,7 @@ public class PmsAttrServiceImpl implements PmsAttrService {
      */
     @Override
     public Attr queryById(Long attrId) {
-        return this.pmsAttrDao.queryById(attrId);
+        return this.attrDao.queryById(attrId);
     }
 
     /**
@@ -41,7 +41,7 @@ public class PmsAttrServiceImpl implements PmsAttrService {
      */
     @Override
     public Attr insert(Attr attr) {
-        this.pmsAttrDao.insert(attr);
+        this.attrDao.insert(attr);
         return attr;
     }
 
@@ -53,7 +53,7 @@ public class PmsAttrServiceImpl implements PmsAttrService {
      */
     @Override
     public Attr update(Attr attr) {
-        this.pmsAttrDao.update(attr);
+        this.attrDao.update(attr);
         return this.queryById(attr.getAttrId());
     }
 
@@ -65,13 +65,13 @@ public class PmsAttrServiceImpl implements PmsAttrService {
      */
     @Override
     public boolean deleteById(Long attrId) {
-        return this.pmsAttrDao.deleteById(attrId) > 0;
+        return this.attrDao.deleteById(attrId) > 0;
     }
     
     @Override
     public PageResp queryWithFilter(Attr attr, int curPage, int pageSize) {
         PageHelper.startPage(curPage, pageSize);
-        List<Attr> attrs = pmsAttrDao.queryWithFilter(attr);
+        List<Attr> attrs = attrDao.queryWithFilter(attr);
     
         PageResp<Attr> pageResp = new PageResp<>();
         pageResp.setCurPage(curPage);

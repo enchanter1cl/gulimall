@@ -1,7 +1,7 @@
 package com.erato.demomall.product.controller;
 
 import com.erato.demomall.product.entity.Attr;
-import com.erato.demomall.product.service.PmsAttrService;
+import com.erato.demomall.product.service.AttrService;
 import org.springframework.web.bind.annotation.*;
 import com.erato.demomall.common.vo.CommonResp;
 import com.erato.demomall.common.vo.PageResp;
@@ -16,12 +16,12 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("product/attr")
-public class PmsAttrController {
+public class AttrController {
     /**
      * 服务对象
      */
     @Resource
-    private PmsAttrService pmsAttrService;
+    private AttrService attrService;
 
 //    /**
 //     * 分页查询
@@ -48,7 +48,7 @@ public class PmsAttrController {
         attr.setAttrName(attrName);
         attr.setAttrType(attrType);
         attr.setCategoryId(categoryId);
-        return CommonResp.ok(pmsAttrService.queryWithFilter(attr, curPage, pageSize));
+        return CommonResp.ok(attrService.queryWithFilter(attr, curPage, pageSize));
     }
 
     /**
@@ -59,7 +59,7 @@ public class PmsAttrController {
      */
     @GetMapping("{id}")
     public CommonResp<Attr> queryById(@PathVariable("id") Long id) {
-        return CommonResp.ok(this.pmsAttrService.queryById(id));
+        return CommonResp.ok(this.attrService.queryById(id));
     }
 
     /**
@@ -70,7 +70,7 @@ public class PmsAttrController {
      */
     @PostMapping
     public CommonResp<Attr> add(Attr attr) {
-        return CommonResp.ok(this.pmsAttrService.insert(attr));
+        return CommonResp.ok(this.attrService.insert(attr));
     }
 
     /**
@@ -81,7 +81,7 @@ public class PmsAttrController {
      */
     @PutMapping
     public CommonResp<Attr> edit(Attr attr) {
-        return CommonResp.ok(this.pmsAttrService.update(attr));
+        return CommonResp.ok(this.attrService.update(attr));
     }
 
     /**
@@ -92,7 +92,7 @@ public class PmsAttrController {
      */
     @DeleteMapping
     public CommonResp<Boolean> deleteById(Long id) {
-        return CommonResp.ok(this.pmsAttrService.deleteById(id));
+        return CommonResp.ok(this.attrService.deleteById(id));
     }
 
 }

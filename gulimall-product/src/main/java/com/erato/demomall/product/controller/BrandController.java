@@ -3,12 +3,11 @@ package com.erato.demomall.product.controller;
 import com.erato.demomall.common.validation.OnAdd;
 import com.erato.demomall.common.validation.OnUpdate;
 import com.erato.demomall.product.entity.Brand;
-import com.erato.demomall.product.service.PmsBrandService;
+import com.erato.demomall.product.service.BrandService;
 import com.erato.demomall.common.vo.CommonResp;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.erato.demomall.common.vo.PageResp;
-
 import javax.annotation.Resource;
 
 /**
@@ -19,10 +18,10 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("product/brand")
-public class PmsBrandController {
+public class BrandController {
     
     @Resource
-    private PmsBrandService pmsBrandService;
+    private BrandService brandService;
 
 //    /**
 //     * 分页查询
@@ -48,7 +47,7 @@ public class PmsBrandController {
         brand.setName(name);
         brand.setFirstLetter(firstLetter);
         brand.setSort(sort);
-        return CommonResp.ok(pmsBrandService.queryWithFilter(brand, curPage, pageSize));
+        return CommonResp.ok(brandService.queryWithFilter(brand, curPage, pageSize));
     }
 
     /**
@@ -59,7 +58,7 @@ public class PmsBrandController {
      */
     @GetMapping("{id}")
     public CommonResp<Brand> queryById(@PathVariable("id") Long id) {
-        return CommonResp.ok(this.pmsBrandService.queryById(id));
+        return CommonResp.ok(this.brandService.queryById(id));
     }
 
     /**
@@ -70,7 +69,7 @@ public class PmsBrandController {
      */
     @PostMapping
     public CommonResp<Brand> add(@Validated(OnAdd.class) @RequestBody Brand brand) {
-        return CommonResp.ok(this.pmsBrandService.insert(brand));
+        return CommonResp.ok(this.brandService.insert(brand));
     }
 
     /**
@@ -81,7 +80,7 @@ public class PmsBrandController {
      */
     @PutMapping
     public CommonResp<Brand> edit(@Validated(OnUpdate.class) @RequestBody Brand brand) {
-        return CommonResp.ok(this.pmsBrandService.update(brand));
+        return CommonResp.ok(this.brandService.update(brand));
     }
 
     /**
@@ -92,7 +91,7 @@ public class PmsBrandController {
      */
     @DeleteMapping
     public CommonResp<Boolean> deleteById(Long id) {
-        return CommonResp.ok(this.pmsBrandService.deleteById(id));
+        return CommonResp.ok(this.brandService.deleteById(id));
     }
 
 }

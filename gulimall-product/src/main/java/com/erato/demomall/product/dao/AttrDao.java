@@ -13,7 +13,7 @@ import java.util.List;
  * @since 2021-01-01 12:49:21
  */
 @Mapper
-public interface PmsAttrDao {
+public interface AttrDao {
 
     /**
      * 通过ID查询单条数据

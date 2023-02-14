@@ -3,8 +3,8 @@ package com.erato.demomall.product.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.erato.demomall.product.entity.Brand;
-import com.erato.demomall.product.dao.PmsBrandDao;
-import com.erato.demomall.product.service.PmsBrandService;
+import com.erato.demomall.product.dao.BrandDao;
+import com.erato.demomall.product.service.BrandService;
 import org.springframework.stereotype.Service;
 import com.erato.demomall.common.vo.PageResp;
 import javax.annotation.Resource;
@@ -17,9 +17,9 @@ import java.util.List;
  * @since 2023-02-03 23:05:11
  */
 @Service("pmsBrandService")
-public class PmsBrandServiceImpl implements PmsBrandService {
+public class BrandServiceImpl implements BrandService {
     @Resource
-    private PmsBrandDao pmsBrandDao;
+    private BrandDao brandDao;
 
     /**
      * 通过ID查询单条数据
@@ -29,7 +29,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      */
     @Override
     public Brand queryById(Long brandId) {
-        return this.pmsBrandDao.queryById(brandId);
+        return this.brandDao.queryById(brandId);
     }
     
     /**
@@ -43,7 +43,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
     @Override
     public PageResp<Brand> queryWithFilter(Brand brand, int curPage, int pageSize) {
         PageHelper.startPage(curPage, pageSize);
-        List<Brand> brands = pmsBrandDao.queryWithFilter(brand);
+        List<Brand> brands = brandDao.queryWithFilter(brand);
         PageResp<Brand> pageResp = new PageResp<>();
         pageResp.setCurPage(curPage);
         pageResp.setPageSize(pageSize);
@@ -60,7 +60,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      */
     @Override
     public Brand insert(Brand brand) {
-        this.pmsBrandDao.insert(brand);
+        this.brandDao.insert(brand);
         return brand;
     }
 
@@ -72,7 +72,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      */
     @Override
     public Brand update(Brand brand) {
-        this.pmsBrandDao.update(brand);
+        this.brandDao.update(brand);
         return this.queryById(brand.getBrandId());
     }
 
@@ -84,6 +84,6 @@ public class PmsBrandServiceImpl implements PmsBrandService {
      */
     @Override
     public boolean deleteById(Long brandId) {
-        return this.pmsBrandDao.deleteById(brandId) > 0;
+        return this.brandDao.deleteById(brandId) > 0;
     }
 }

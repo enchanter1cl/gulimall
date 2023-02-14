@@ -9,7 +9,7 @@ import com.erato.demomall.common.vo.PageResp;
  * @author makejava
  * @since 2023-01-01 12:49:29
  */
-public interface PmsAttrService {
+public interface AttrService {
 
     /**
      * 通过ID查询单条数据
