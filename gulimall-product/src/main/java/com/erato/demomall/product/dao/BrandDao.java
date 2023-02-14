@@ -24,15 +24,6 @@ public interface BrandDao {
     Brand queryById(Long brandId);
 
     /**
-     * 查询指定行数据
-     *
-     * @param brand 查询条件
-     * @param pageable         分页对象
-     * @return 对象列表
-     */
-    List<Brand> queryAllByLimit(Brand brand, @Param("pageable") Pageable pageable);
-
-    /**
      * 统计总行数
      *
      * @param brand 查询条件
