@@ -1,4 +1,4 @@
-package org.erato.gulimall.product.entity;
+package com.erato.demomall.product.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

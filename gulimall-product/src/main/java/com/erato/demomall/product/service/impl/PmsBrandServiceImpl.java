@@ -1,14 +1,11 @@
-package org.erato.gulimall.product.service.impl;
+package com.erato.demomall.product.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.erato.gulimall.product.entity.Brand;
-import org.erato.gulimall.product.dao.PmsBrandDao;
-import org.erato.gulimall.product.service.PmsBrandService;
-import org.springframework.data.domain.Pageable;
+import com.erato.demomall.product.entity.Brand;
+import com.erato.demomall.product.dao.PmsBrandDao;
+import com.erato.demomall.product.service.PmsBrandService;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import vo.PageResp;
 import javax.annotation.Resource;
 import java.util.List;

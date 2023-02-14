@@ -1,9 +1,8 @@
-package org.erato.gulimall.product.dao;
+package com.erato.demomall.product.dao;
 
+import com.erato.demomall.product.entity.Attr;
 import org.apache.ibatis.annotations.Mapper;
-import org.erato.gulimall.product.entity.Attr;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 

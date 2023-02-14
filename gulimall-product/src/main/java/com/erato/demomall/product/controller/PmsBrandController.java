@@ -1,9 +1,9 @@
-package org.erato.gulimall.product.controller;
+package com.erato.demomall.product.controller;
 
 import com.erato.demomall.common.validation.OnAdd;
 import com.erato.demomall.common.validation.OnUpdate;
-import org.erato.gulimall.product.entity.Brand;
-import org.erato.gulimall.product.service.PmsBrandService;
+import com.erato.demomall.product.entity.Brand;
+import com.erato.demomall.product.service.PmsBrandService;
 import vo.CommonResp;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

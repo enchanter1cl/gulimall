@@ -1,4 +1,4 @@
-package org.erato.gulimall.product.entity;
+package com.erato.demomall.product.entity;
 
 import com.erato.demomall.common.validation.OnAdd;
 import com.erato.demomall.common.validation.OnUpdate;

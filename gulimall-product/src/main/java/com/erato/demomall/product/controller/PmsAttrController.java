@@ -1,7 +1,7 @@
-package org.erato.gulimall.product.controller;
+package com.erato.demomall.product.controller;
 
-import org.erato.gulimall.product.entity.Attr;
-import org.erato.gulimall.product.service.PmsAttrService;
+import com.erato.demomall.product.entity.Attr;
+import com.erato.demomall.product.service.PmsAttrService;
 import org.springframework.web.bind.annotation.*;
 import vo.CommonResp;
 import vo.PageResp;

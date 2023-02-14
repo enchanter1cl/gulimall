@@ -1,14 +1,12 @@
-package org.erato.gulimall.product.service.impl;
+package com.erato.demomall.product.service.impl;
 
+import com.erato.demomall.product.dao.PmsAttrDao;
+import com.erato.demomall.product.entity.Attr;
+import com.erato.demomall.product.service.PmsAttrService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import org.erato.gulimall.product.entity.Attr;
-import org.erato.gulimall.product.dao.PmsAttrDao;
-import org.erato.gulimall.product.service.PmsAttrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import vo.PageResp;
 
 import java.util.List;

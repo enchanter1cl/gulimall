@@ -1,8 +1,6 @@
-package org.erato.gulimall.product.service;
+package com.erato.demomall.product.service;
 
-import org.erato.gulimall.product.entity.Attr;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.erato.demomall.product.entity.Attr;
 import vo.PageResp;
 
 /**
