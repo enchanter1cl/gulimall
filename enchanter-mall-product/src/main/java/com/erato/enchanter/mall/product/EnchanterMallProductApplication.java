@@ -1,4 +1,4 @@
-package com.erato.demomall.product;
+package com.erato.enchanter.mall.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class GulimallProductApplication {
+public class EnchanterMallProductApplication {
     
     public static void main(String[] args) {
-        SpringApplication.run(GulimallProductApplication.class, args);
+        SpringApplication.run(EnchanterMallProductApplication.class, args);
     }
 }
