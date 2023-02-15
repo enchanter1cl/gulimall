@@ -1,4 +1,4 @@
-package com.erato.demomall.common.vo;
+package com.erato.enchanter.mall.common.vo;
 
 import lombok.Data;
 

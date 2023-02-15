@@ -1,4 +1,4 @@
-package com.erato.demomall.common.validation;
+package com.erato.enchanter.mall.common.validation;
 
 /**
  * @author ZhangYuan

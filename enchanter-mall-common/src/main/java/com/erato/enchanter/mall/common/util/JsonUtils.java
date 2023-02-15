@@ -1,4 +1,4 @@
-package com.erato.demomall.common.util;
+package com.erato.enchanter.mall.common.util;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
