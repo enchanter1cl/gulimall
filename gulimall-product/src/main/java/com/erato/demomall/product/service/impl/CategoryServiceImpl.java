@@ -1,5 +1,6 @@
 package com.erato.demomall.product.service.impl;
 
+import com.erato.demomall.common.util.JsonUtils;
 import com.erato.demomall.product.entity.Category;
 import com.erato.demomall.product.dao.CategoryDao;
 import com.erato.demomall.product.service.CategoryService;
@@ -60,25 +61,15 @@ public class CategoryServiceImpl implements CategoryService {
         List<CategoryVo> categoryVoList;
         if (StringUtils.hasText(categoryJSON)) {
             /* 2.1 If it exists in cache. */
-            try {
-                categoryVoList = OBJECT_MAPPER.readValue(categoryJSON, new TypeReference<List<CategoryVo>>() {
-                });
-                return categoryVoList;
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
+            categoryVoList = JsonUtils.readValue(categoryJSON, new TypeReference<List<CategoryVo>>() {});
         } else {
             /* 2.2 If it doesn't exist in cache. Query Db.  Transfer this java obj to JSON, store it into cache. */
             categoryVoList = this.queryAllFromDb();
-            String categoryJsonValue = null;
-            try {
-                categoryJsonValue = OBJECT_MAPPER.writeValueAsString(categoryVoList);
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);
-            }
+            String categoryJsonValue;
+            categoryJsonValue = JsonUtils.writeValueAsString(categoryVoList);
             strRedisTemplate.opsForValue().set("categoryJSON", categoryJsonValue);
-            return categoryVoList;
         }
+        return categoryVoList;
     }
     
     /**

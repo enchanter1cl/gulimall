@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @since 2023-02-14 13:06:23
  */
 @RestController
-@RequestMapping("category")
+@RequestMapping("product/category")
 public class CategoryController {
 
     @Resource
@@ -43,7 +43,7 @@ public class CategoryController {
     }
     
     /**
-     * 新增数据
+     * 新增数据+
      *
      * @param category 实体
      * @return 新增结果
