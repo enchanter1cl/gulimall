@@ -1,5 +1,6 @@
 package com.erato.enchanter.mall.product.service.impl;
 
+import com.erato.enchanter.mall.common.vo.PageResp;
 import com.erato.enchanter.mall.product.dao.AttrDao;
 import com.erato.enchanter.mall.product.entity.Attr;
 import com.erato.enchanter.mall.product.service.AttrService;
