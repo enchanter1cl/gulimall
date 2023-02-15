@@ -7,15 +7,15 @@
     <!--        <version>1.2</version>-->
     <!--    </parent>-->
 
-    <groupId>org.erato</groupId>
-    <artifactId>gulimall-product</artifactId>
+    <groupId>com.erato</groupId>
+    <artifactId>enchanter-mall-product</artifactId>
     <version>1.2</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.erato</groupId>
-            <artifactId>gulimall-common</artifactId>
+            <groupId>com.erato</groupId>
+            <artifactId>enchanter-mall-common</artifactId>
             <version>1.2</version>
         </dependency>
         <dependency>

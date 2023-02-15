@@ -8,8 +8,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.erato</groupId>
-    <artifactId>gulimall-common</artifactId>
+    <groupId>com.erato</groupId>
+    <artifactId>enchanter-mall-common</artifactId>
     <version>1.2</version>
     <packaging>jar</packaging>
 
