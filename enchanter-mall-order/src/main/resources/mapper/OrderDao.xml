@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erato.enchanter.mall.order.dao.OrderDao">
+
+    <resultMap type="com.erato.enchanter.mall.order.entity.Order" id="OrderMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="memberId" column="member_id" jdbcType="INTEGER"/>
+        <result property="orderSn" column="order_sn" jdbcType="VARCHAR"/>
+        <result property="couponId" column="coupon_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="memberUsername" column="member_username" jdbcType="VARCHAR"/>
+        <result property="totalAmount" column="total_amount" jdbcType="NUMERIC"/>
+        <result property="payAmount" column="pay_amount" jdbcType="NUMERIC"/>
+        <result property="freightAmount" column="freight_amount" jdbcType="NUMERIC"/>
+        <result property="promotionAmount" column="promotion_amount" jdbcType="NUMERIC"/>
+        <result property="couponAmount" column="coupon_amount" jdbcType="NUMERIC"/>
+        <result property="payType" column="pay_type" jdbcType="INTEGER"/>
+        <result property="sourceType" column="source_type" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="deliverySn" column="delivery_sn" jdbcType="VARCHAR"/>
+        <result property="receiverName" column="receiver_name" jdbcType="VARCHAR"/>
+        <result property="receiverPhone" column="receiver_phone" jdbcType="VARCHAR"/>
+        <result property="receiverAddress" column="receiver_address" jdbcType="VARCHAR"/>
+        <result property="note" column="note" jdbcType="VARCHAR"/>
+        <result property="deleteStatus" column="delete_status" jdbcType="INTEGER"/>
+        <result property="paymentTime" column="payment_time" jdbcType="TIMESTAMP"/>
+        <result property="deliveryTime" column="delivery_time" jdbcType="TIMESTAMP"/>
+        <result property="receiveTime" column="receive_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderMap">
+        select
+          id, member_id, order_sn, coupon_id, create_time, member_username, total_amount, pay_amount, freight_amount, promotion_amount, coupon_amount, pay_type, source_type, status, delivery_sn, receiver_name, receiver_phone, receiver_address, note, delete_status, payment_time, delivery_time, receive_time
+        from oms_order
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderMap">
+        select
+          id, member_id, order_sn, coupon_id, create_time, member_username, total_amount, pay_amount, freight_amount, promotion_amount, coupon_amount, pay_type, source_type, status, delivery_sn, receiver_name, receiver_phone, receiver_address, note, delete_status, payment_time, delivery_time, receive_time
+        from oms_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="memberId != null">
+                and member_id = #{memberId}
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                and order_sn = #{orderSn}
+            </if>
+            <if test="couponId != null">
+                and coupon_id = #{couponId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="memberUsername != null and memberUsername != ''">
+                and member_username = #{memberUsername}
+            </if>
+            <if test="totalAmount != null">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="payAmount != null">
+                and pay_amount = #{payAmount}
+            </if>
+            <if test="freightAmount != null">
+                and freight_amount = #{freightAmount}
+            </if>
+            <if test="promotionAmount != null">
+                and promotion_amount = #{promotionAmount}
+            </if>
+            <if test="couponAmount != null">
+                and coupon_amount = #{couponAmount}
+            </if>
+            <if test="payType != null">
+                and pay_type = #{payType}
+            </if>
+            <if test="sourceType != null">
+                and source_type = #{sourceType}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="deliverySn != null and deliverySn != ''">
+                and delivery_sn = #{deliverySn}
+            </if>
+            <if test="receiverName != null and receiverName != ''">
+                and receiver_name = #{receiverName}
+            </if>
+            <if test="receiverPhone != null and receiverPhone != ''">
+                and receiver_phone = #{receiverPhone}
+            </if>
+            <if test="receiverAddress != null and receiverAddress != ''">
+                and receiver_address = #{receiverAddress}
+            </if>
+            <if test="note != null and note != ''">
+                and note = #{note}
+            </if>
+            <if test="deleteStatus != null">
+                and delete_status = #{deleteStatus}
+            </if>
+            <if test="paymentTime != null">
+                and payment_time = #{paymentTime}
+            </if>
+            <if test="deliveryTime != null">
+                and delivery_time = #{deliveryTime}
+            </if>
+            <if test="receiveTime != null">
+                and receive_time = #{receiveTime}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from oms_order
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="memberId != null">
+                and member_id = #{memberId}
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                and order_sn = #{orderSn}
+            </if>
+            <if test="couponId != null">
+                and coupon_id = #{couponId}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="memberUsername != null and memberUsername != ''">
+                and member_username = #{memberUsername}
+            </if>
+            <if test="totalAmount != null">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="payAmount != null">
+                and pay_amount = #{payAmount}
+            </if>
+            <if test="freightAmount != null">
+                and freight_amount = #{freightAmount}
+            </if>
+            <if test="promotionAmount != null">
+                and promotion_amount = #{promotionAmount}
+            </if>
+            <if test="couponAmount != null">
+                and coupon_amount = #{couponAmount}
+            </if>
+            <if test="payType != null">
+                and pay_type = #{payType}
+            </if>
+            <if test="sourceType != null">
+                and source_type = #{sourceType}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="deliverySn != null and deliverySn != ''">
+                and delivery_sn = #{deliverySn}
+            </if>
+            <if test="receiverName != null and receiverName != ''">
+                and receiver_name = #{receiverName}
+            </if>
+            <if test="receiverPhone != null and receiverPhone != ''">
+                and receiver_phone = #{receiverPhone}
+            </if>
+            <if test="receiverAddress != null and receiverAddress != ''">
+                and receiver_address = #{receiverAddress}
+            </if>
+            <if test="note != null and note != ''">
+                and note = #{note}
+            </if>
+            <if test="deleteStatus != null">
+                and delete_status = #{deleteStatus}
+            </if>
+            <if test="paymentTime != null">
+                and payment_time = #{paymentTime}
+            </if>
+            <if test="deliveryTime != null">
+                and delivery_time = #{deliveryTime}
+            </if>
+            <if test="receiveTime != null">
+                and receive_time = #{receiveTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_order(member_id, order_sn, coupon_id, create_time, member_username, total_amount, pay_amount, freight_amount, promotion_amount, coupon_amount, pay_type, source_type, status, delivery_sn, receiver_name, receiver_phone, receiver_address, note, delete_status, payment_time, delivery_time, receive_time)
+        values (#{memberId}, #{orderSn}, #{couponId}, #{createTime}, #{memberUsername}, #{totalAmount}, #{payAmount}, #{freightAmount}, #{promotionAmount}, #{couponAmount}, #{payType}, #{sourceType}, #{status}, #{deliverySn}, #{receiverName}, #{receiverPhone}, #{receiverAddress}, #{note}, #{deleteStatus}, #{paymentTime}, #{deliveryTime}, #{receiveTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_order(member_id, order_sn, coupon_id, create_time, member_username, total_amount, pay_amount, freight_amount, promotion_amount, coupon_amount, pay_type, source_type, status, delivery_sn, receiver_name, receiver_phone, receiver_address, note, delete_status, payment_time, delivery_time, receive_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.memberId}, #{entity.orderSn}, #{entity.couponId}, #{entity.createTime}, #{entity.memberUsername}, #{entity.totalAmount}, #{entity.payAmount}, #{entity.freightAmount}, #{entity.promotionAmount}, #{entity.couponAmount}, #{entity.payType}, #{entity.sourceType}, #{entity.status}, #{entity.deliverySn}, #{entity.receiverName}, #{entity.receiverPhone}, #{entity.receiverAddress}, #{entity.note}, #{entity.deleteStatus}, #{entity.paymentTime}, #{entity.deliveryTime}, #{entity.receiveTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_order(member_id, order_sn, coupon_id, create_time, member_username, total_amount, pay_amount, freight_amount, promotion_amount, coupon_amount, pay_type, source_type, status, delivery_sn, receiver_name, receiver_phone, receiver_address, note, delete_status, payment_time, delivery_time, receive_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.memberId}, #{entity.orderSn}, #{entity.couponId}, #{entity.createTime}, #{entity.memberUsername}, #{entity.totalAmount}, #{entity.payAmount}, #{entity.freightAmount}, #{entity.promotionAmount}, #{entity.couponAmount}, #{entity.payType}, #{entity.sourceType}, #{entity.status}, #{entity.deliverySn}, #{entity.receiverName}, #{entity.receiverPhone}, #{entity.receiverAddress}, #{entity.note}, #{entity.deleteStatus}, #{entity.paymentTime}, #{entity.deliveryTime}, #{entity.receiveTime})
+        </foreach>
+        on duplicate key update
+        member_id = values(member_id),
+        order_sn = values(order_sn),
+        coupon_id = values(coupon_id),
+        create_time = values(create_time),
+        member_username = values(member_username),
+        total_amount = values(total_amount),
+        pay_amount = values(pay_amount),
+        freight_amount = values(freight_amount),
+        promotion_amount = values(promotion_amount),
+        coupon_amount = values(coupon_amount),
+        pay_type = values(pay_type),
+        source_type = values(source_type),
+        status = values(status),
+        delivery_sn = values(delivery_sn),
+        receiver_name = values(receiver_name),
+        receiver_phone = values(receiver_phone),
+        receiver_address = values(receiver_address),
+        note = values(note),
+        delete_status = values(delete_status),
+        payment_time = values(payment_time),
+        delivery_time = values(delivery_time),
+        receive_time = values(receive_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update oms_order
+        <set>
+            <if test="memberId != null">
+                member_id = #{memberId},
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                order_sn = #{orderSn},
+            </if>
+            <if test="couponId != null">
+                coupon_id = #{couponId},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="memberUsername != null and memberUsername != ''">
+                member_username = #{memberUsername},
+            </if>
+            <if test="totalAmount != null">
+                total_amount = #{totalAmount},
+            </if>
+            <if test="payAmount != null">
+                pay_amount = #{payAmount},
+            </if>
+            <if test="freightAmount != null">
+                freight_amount = #{freightAmount},
+            </if>
+            <if test="promotionAmount != null">
+                promotion_amount = #{promotionAmount},
+            </if>
+            <if test="couponAmount != null">
+                coupon_amount = #{couponAmount},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType},
+            </if>
+            <if test="sourceType != null">
+                source_type = #{sourceType},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="deliverySn != null and deliverySn != ''">
+                delivery_sn = #{deliverySn},
+            </if>
+            <if test="receiverName != null and receiverName != ''">
+                receiver_name = #{receiverName},
+            </if>
+            <if test="receiverPhone != null and receiverPhone != ''">
+                receiver_phone = #{receiverPhone},
+            </if>
+            <if test="receiverAddress != null and receiverAddress != ''">
+                receiver_address = #{receiverAddress},
+            </if>
+            <if test="note != null and note != ''">
+                note = #{note},
+            </if>
+            <if test="deleteStatus != null">
+                delete_status = #{deleteStatus},
+            </if>
+            <if test="paymentTime != null">
+                payment_time = #{paymentTime},
+            </if>
+            <if test="deliveryTime != null">
+                delivery_time = #{deliveryTime},
+            </if>
+            <if test="receiveTime != null">
+                receive_time = #{receiveTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from oms_order where id = #{id}
+    </delete>
+
+</mapper>
+
