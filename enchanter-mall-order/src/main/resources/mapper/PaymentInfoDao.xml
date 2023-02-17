@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erato.enchanter.mall.order.dao.PaymentInfoDao">
+
+    <resultMap type="com.erato.enchanter.mall.order.entity.PaymentInfo" id="PaymentInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="INTEGER"/>
+        <result property="alipayTradeNo" column="alipay_trade_no" jdbcType="VARCHAR"/>
+        <result property="totalAmount" column="total_amount" jdbcType="NUMERIC"/>
+        <result property="paymentStatus" column="payment_status" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="callbackContent" column="callback_content" jdbcType="VARCHAR"/>
+        <result property="callbackTime" column="callback_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="PaymentInfoMap">
+        select
+          id, order_id, alipay_trade_no, total_amount, payment_status, create_time, callback_content, callback_time
+        from oms_payment_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="PaymentInfoMap">
+        select
+          id, order_id, alipay_trade_no, total_amount, payment_status, create_time, callback_content, callback_time
+        from oms_payment_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="alipayTradeNo != null and alipayTradeNo != ''">
+                and alipay_trade_no = #{alipayTradeNo}
+            </if>
+            <if test="totalAmount != null">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="paymentStatus != null and paymentStatus != ''">
+                and payment_status = #{paymentStatus}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="callbackContent != null and callbackContent != ''">
+                and callback_content = #{callbackContent}
+            </if>
+            <if test="callbackTime != null">
+                and callback_time = #{callbackTime}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from oms_payment_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="alipayTradeNo != null and alipayTradeNo != ''">
+                and alipay_trade_no = #{alipayTradeNo}
+            </if>
+            <if test="totalAmount != null">
+                and total_amount = #{totalAmount}
+            </if>
+            <if test="paymentStatus != null and paymentStatus != ''">
+                and payment_status = #{paymentStatus}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="callbackContent != null and callbackContent != ''">
+                and callback_content = #{callbackContent}
+            </if>
+            <if test="callbackTime != null">
+                and callback_time = #{callbackTime}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_payment_info(order_id, alipay_trade_no, total_amount, payment_status, create_time, callback_content, callback_time)
+        values (#{orderId}, #{alipayTradeNo}, #{totalAmount}, #{paymentStatus}, #{createTime}, #{callbackContent}, #{callbackTime})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_payment_info(order_id, alipay_trade_no, total_amount, payment_status, create_time, callback_content, callback_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.orderId}, #{entity.alipayTradeNo}, #{entity.totalAmount}, #{entity.paymentStatus}, #{entity.createTime}, #{entity.callbackContent}, #{entity.callbackTime})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_payment_info(order_id, alipay_trade_no, total_amount, payment_status, create_time, callback_content, callback_time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.orderId}, #{entity.alipayTradeNo}, #{entity.totalAmount}, #{entity.paymentStatus}, #{entity.createTime}, #{entity.callbackContent}, #{entity.callbackTime})
+        </foreach>
+        on duplicate key update
+        order_id = values(order_id),
+        alipay_trade_no = values(alipay_trade_no),
+        total_amount = values(total_amount),
+        payment_status = values(payment_status),
+        create_time = values(create_time),
+        callback_content = values(callback_content),
+        callback_time = values(callback_time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update oms_payment_info
+        <set>
+            <if test="orderId != null">
+                order_id = #{orderId},
+            </if>
+            <if test="alipayTradeNo != null and alipayTradeNo != ''">
+                alipay_trade_no = #{alipayTradeNo},
+            </if>
+            <if test="totalAmount != null">
+                total_amount = #{totalAmount},
+            </if>
+            <if test="paymentStatus != null and paymentStatus != ''">
+                payment_status = #{paymentStatus},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="callbackContent != null and callbackContent != ''">
+                callback_content = #{callbackContent},
+            </if>
+            <if test="callbackTime != null">
+                callback_time = #{callbackTime},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from oms_payment_info where id = #{id}
+    </delete>
+
+</mapper>
+
