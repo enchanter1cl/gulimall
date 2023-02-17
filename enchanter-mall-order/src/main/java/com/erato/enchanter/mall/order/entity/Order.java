@@ -65,7 +65,7 @@ public class Order implements Serializable {
     /**
      * 优惠券抵扣金额
      */
-    private BigDecimal couponAmount = BigDecimal.ZERO;
+    private BigDecimal couponAmount;
     /**
      * 支付方式【1->支付宝；2->微信；3->银联； 4->货到付款；】
      */
