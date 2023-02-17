@@ -60,21 +60,6 @@
             <if test="memberUsername != null and memberUsername != ''">
                 and member_username = #{memberUsername}
             </if>
-            <if test="totalAmount != null">
-                and total_amount = #{totalAmount}
-            </if>
-            <if test="payAmount != null">
-                and pay_amount = #{payAmount}
-            </if>
-            <if test="freightAmount != null">
-                and freight_amount = #{freightAmount}
-            </if>
-            <if test="promotionAmount != null">
-                and promotion_amount = #{promotionAmount}
-            </if>
-            <if test="couponAmount != null">
-                and coupon_amount = #{couponAmount}
-            </if>
             <if test="payType != null">
                 and pay_type = #{payType}
             </if>

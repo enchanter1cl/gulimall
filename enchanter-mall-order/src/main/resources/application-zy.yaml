@@ -18,3 +18,7 @@ mybatis:
 pagehelper:
   reasonable: false
   defaultCount: true # 分页插件默认参数支持 default-count 形式，自定义扩展的参数，必须大小写一致
+
+logging:
+  level:
+    com.erato.enchanter.mall.order.dao: debug
