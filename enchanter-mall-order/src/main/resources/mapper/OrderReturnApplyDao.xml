@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.erato.enchanter.mall.order.dao.OrderReturnApplyDao">
+
+    <resultMap type="com.erato.enchanter.mall.order.entity.OrderReturnApply" id="OrderReturnApplyMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderId" column="order_id" jdbcType="INTEGER"/>
+        <result property="skuId" column="sku_id" jdbcType="INTEGER"/>
+        <result property="orderSn" column="order_sn" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="memberUsername" column="member_username" jdbcType="VARCHAR"/>
+        <result property="returnAmount" column="return_amount" jdbcType="NUMERIC"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="skuImg" column="sku_img" jdbcType="VARCHAR"/>
+        <result property="skuName" column="sku_name" jdbcType="VARCHAR"/>
+        <result property="skuBrand" column="sku_brand" jdbcType="VARCHAR"/>
+        <result property="skuAttrsVals" column="sku_attrs_vals" jdbcType="VARCHAR"/>
+        <result property="skuCount" column="sku_count" jdbcType="INTEGER"/>
+        <result property="skuPrice" column="sku_price" jdbcType="NUMERIC"/>
+        <result property="skuRealPrice" column="sku_real_price" jdbcType="NUMERIC"/>
+        <result property="reason" column="reason" jdbcType="VARCHAR"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="receiveAddress" column="receive_address" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderReturnApplyMap">
+        select
+          id, order_id, sku_id, order_sn, create_time, member_username, return_amount, status, sku_img, sku_name, sku_brand, sku_attrs_vals, sku_count, sku_price, sku_real_price, reason, description, receive_address
+        from oms_order_return_apply
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderReturnApplyMap">
+        select
+          id, order_id, sku_id, order_sn, create_time, member_username, return_amount, status, sku_img, sku_name, sku_brand, sku_attrs_vals, sku_count, sku_price, sku_real_price, reason, description, receive_address
+        from oms_order_return_apply
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="skuId != null">
+                and sku_id = #{skuId}
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                and order_sn = #{orderSn}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="memberUsername != null and memberUsername != ''">
+                and member_username = #{memberUsername}
+            </if>
+            <if test="returnAmount != null">
+                and return_amount = #{returnAmount}
+            </if>
+<!--            <if test="returnName != null and returnName != ''">-->
+<!--                and return_name = #{returnName}-->
+<!--            </if>-->
+<!--            <if test="returnPhone != null and returnPhone != ''">-->
+<!--                and return_phone = #{returnPhone}-->
+<!--            </if>-->
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="skuImg != null and skuImg != ''">
+                and sku_img = #{skuImg}
+            </if>
+            <if test="skuName != null and skuName != ''">
+                and sku_name = #{skuName}
+            </if>
+            <if test="skuBrand != null and skuBrand != ''">
+                and sku_brand = #{skuBrand}
+            </if>
+            <if test="skuAttrsVals != null and skuAttrsVals != ''">
+                and sku_attrs_vals = #{skuAttrsVals}
+            </if>
+            <if test="skuCount != null">
+                and sku_count = #{skuCount}
+            </if>
+            <if test="skuPrice != null">
+                and sku_price = #{skuPrice}
+            </if>
+            <if test="skuRealPrice != null">
+                and sku_real_price = #{skuRealPrice}
+            </if>
+            <if test="reason != null and reason != ''">
+                and reason = #{reason}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="receiveAddress != null and receiveAddress != ''">
+                and receive_address = #{receiveAddress}
+            </if>
+        </where>
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from oms_order_return_apply
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId}
+            </if>
+            <if test="skuId != null">
+                and sku_id = #{skuId}
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                and order_sn = #{orderSn}
+            </if>
+            <if test="createTime != null">
+                and create_time = #{createTime}
+            </if>
+            <if test="memberUsername != null and memberUsername != ''">
+                and member_username = #{memberUsername}
+            </if>
+            <if test="returnAmount != null">
+                and return_amount = #{returnAmount}
+            </if>
+<!--            <if test="returnName != null and returnName != ''">-->
+<!--                and return_name = #{returnName}-->
+<!--            </if>-->
+<!--            <if test="returnPhone != null and returnPhone != ''">-->
+<!--                and return_phone = #{returnPhone}-->
+<!--            </if>-->
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="skuImg != null and skuImg != ''">
+                and sku_img = #{skuImg}
+            </if>
+            <if test="skuName != null and skuName != ''">
+                and sku_name = #{skuName}
+            </if>
+            <if test="skuBrand != null and skuBrand != ''">
+                and sku_brand = #{skuBrand}
+            </if>
+            <if test="skuAttrsVals != null and skuAttrsVals != ''">
+                and sku_attrs_vals = #{skuAttrsVals}
+            </if>
+            <if test="skuCount != null">
+                and sku_count = #{skuCount}
+            </if>
+            <if test="skuPrice != null">
+                and sku_price = #{skuPrice}
+            </if>
+            <if test="skuRealPrice != null">
+                and sku_real_price = #{skuRealPrice}
+            </if>
+            <if test="reason != null and reason != ''">
+                and reason = #{reason}
+            </if>
+            <if test="description != null and description != ''">
+                and description = #{description}
+            </if>
+            <if test="receiveAddress != null and receiveAddress != ''">
+                and receive_address = #{receiveAddress}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_order_return_apply(order_id, sku_id, order_sn, create_time, member_username, return_amount, status, sku_img, sku_name, sku_brand, sku_attrs_vals, sku_count, sku_price, sku_real_price, reason, description, receive_address)
+        values (#{orderId}, #{skuId}, #{orderSn}, #{createTime}, #{memberUsername}, #{returnAmount}, #{status}, #{skuImg}, #{skuName}, #{skuBrand}, #{skuAttrsVals}, #{skuCount}, #{skuPrice}, #{skuRealPrice}, #{reason}, #{description}, #{receiveAddress})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_order_return_apply(order_id, sku_id, order_sn, create_time, member_username, return_amount, status, sku_img, sku_name, sku_brand, sku_attrs_vals, sku_count, sku_price, sku_real_price, reason, description, receive_address)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.orderId}, #{entity.skuId}, #{entity.orderSn}, #{entity.createTime}, #{entity.memberUsername}, #{entity.returnAmount}, #{entity.status}, #{entity.skuImg}, #{entity.skuName}, #{entity.skuBrand}, #{entity.skuAttrsVals}, #{entity.skuCount}, #{entity.skuPrice}, #{entity.skuRealPrice}, #{entity.reason}, #{entity.description}, #{entity.receiveAddress})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into oms_order_return_apply(order_id, sku_id, order_sn, create_time, member_username, return_amount, status, sku_img, sku_name, sku_brand, sku_attrs_vals, sku_count, sku_price, sku_real_price, reason, description, receive_address)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.orderId}, #{entity.skuId}, #{entity.orderSn}, #{entity.createTime}, #{entity.memberUsername}, #{entity.returnAmount}, #{entity.returnName}, #{entity.returnPhone}, #{entity.status}, #{entity.skuImg}, #{entity.skuName}, #{entity.skuBrand}, #{entity.skuAttrsVals}, #{entity.skuCount}, #{entity.skuPrice}, #{entity.skuRealPrice}, #{entity.reason}, #{entity.description}, #{entity.receiveAddress})
+        </foreach>
+        on duplicate key update
+        order_id = values(order_id),
+        sku_id = values(sku_id),
+        order_sn = values(order_sn),
+        create_time = values(create_time),
+        member_username = values(member_username),
+        return_amount = values(return_amount),
+#         return_name = values(return_name),
+#         return_phone = values(return_phone),
+        status = values(status),
+        sku_img = values(sku_img),
+        sku_name = values(sku_name),
+        sku_brand = values(sku_brand),
+        sku_attrs_vals = values(sku_attrs_vals),
+        sku_count = values(sku_count),
+        sku_price = values(sku_price),
+        sku_real_price = values(sku_real_price),
+        reason = values(reason),
+        description = values(description),
+        receive_address = values(receive_address)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update oms_order_return_apply
+        <set>
+            <if test="orderId != null">
+                order_id = #{orderId},
+            </if>
+            <if test="skuId != null">
+                sku_id = #{skuId},
+            </if>
+            <if test="orderSn != null and orderSn != ''">
+                order_sn = #{orderSn},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime},
+            </if>
+            <if test="memberUsername != null and memberUsername != ''">
+                member_username = #{memberUsername},
+            </if>
+            <if test="returnAmount != null">
+                return_amount = #{returnAmount},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="skuImg != null and skuImg != ''">
+                sku_img = #{skuImg},
+            </if>
+            <if test="skuName != null and skuName != ''">
+                sku_name = #{skuName},
+            </if>
+            <if test="skuBrand != null and skuBrand != ''">
+                sku_brand = #{skuBrand},
+            </if>
+            <if test="skuAttrsVals != null and skuAttrsVals != ''">
+                sku_attrs_vals = #{skuAttrsVals},
+            </if>
+            <if test="skuCount != null">
+                sku_count = #{skuCount},
+            </if>
+            <if test="skuPrice != null">
+                sku_price = #{skuPrice},
+            </if>
+            <if test="skuRealPrice != null">
+                sku_real_price = #{skuRealPrice},
+            </if>
+            <if test="reason != null and reason != ''">
+                reason = #{reason},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="receiveAddress != null and receiveAddress != ''">
+                receive_address = #{receiveAddress},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from oms_order_return_apply where id = #{id}
+    </delete>
+
+</mapper>
+
