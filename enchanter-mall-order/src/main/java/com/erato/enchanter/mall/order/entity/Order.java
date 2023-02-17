@@ -3,7 +3,9 @@ package com.erato.enchanter.mall.order.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.io.Serializable;
 
@@ -17,6 +19,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Accessors(chain = true)
 public class Order implements Serializable {
     private static final long serialVersionUID = -62896844145924198L;
     /**
@@ -46,23 +49,23 @@ public class Order implements Serializable {
     /**
      * 订单总额
      */
-    private Double totalAmount;
+    private BigDecimal totalAmount = BigDecimal.ZERO;
     /**
      * 应付总额
      */
-    private Double payAmount;
+    private BigDecimal payAmount = BigDecimal.ZERO;
     /**
      * 运费金额
      */
-    private Double freightAmount;
+    private BigDecimal freightAmount = BigDecimal.ZERO;
     /**
      * 促销优化金额（促销价、满减、阶梯价）
      */
-    private Double promotionAmount;
+    private BigDecimal promotionAmount = BigDecimal.ZERO;
     /**
      * 优惠券抵扣金额
      */
-    private Double couponAmount;
+    private BigDecimal couponAmount = BigDecimal.ZERO;
     /**
      * 支付方式【1->支付宝；2->微信；3->银联； 4->货到付款；】
      */

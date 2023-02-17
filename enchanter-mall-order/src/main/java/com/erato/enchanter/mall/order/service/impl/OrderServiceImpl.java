@@ -7,6 +7,8 @@ import com.erato.enchanter.mall.order.service.OrderService;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -38,10 +40,10 @@ public class OrderServiceImpl implements OrderService {
      * @return 查询结果
      */
     @Override
-    public PageResp<Order> queryByPage(int curPage, int pageSize) {
+    public PageResp<Order> queryByPage(Long memberId, int curPage, int pageSize) {
         PageHelper.startPage(curPage, pageSize);
-        long total = this.orderDao.count(new Order());
-        List<Order> orders = this.orderDao.queryAllByLimit(new Order());
+        //long total = this.orderDao.count(new Order());
+        List<Order> orders = this.orderDao.queryAllByLimit(new Order().setMemberId(memberId));
         PageResp<Order> pageResp = new PageResp<>();
         pageResp.setCurPage(curPage);
         pageResp.setPageSize(pageSize);
@@ -58,6 +60,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Order insert(Order order) {
+        System.out.println(order);
         this.orderDao.insert(order);
         return order;
     }

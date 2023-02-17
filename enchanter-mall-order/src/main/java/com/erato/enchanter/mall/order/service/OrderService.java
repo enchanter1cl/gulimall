@@ -24,7 +24,7 @@ public interface OrderService {
      *
      * @return 查询结果
      */
-    PageResp<Order> queryByPage(int curPage, int pageSize);
+    PageResp<Order> queryByPage(Long memberId, int curPage, int pageSize);
 
     /**
      * 新增数据

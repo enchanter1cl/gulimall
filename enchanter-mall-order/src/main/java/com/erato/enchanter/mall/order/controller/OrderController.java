@@ -18,9 +18,7 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("order")
 public class OrderController {
-    /**
-     * 服务对象
-     */
+    
     @Resource
     private OrderService orderService;
 
@@ -29,11 +27,12 @@ public class OrderController {
      *
      * @return 查询结果
      */
-    @GetMapping
+    @GetMapping("/filter")
     public CommonResp<PageResp<Order>> queryByPage(
+            @RequestParam(required = false) Long memberId,
             @RequestParam(required = false, defaultValue = "1") int curPage,
             @RequestParam(required = false, defaultValue = "5") int pageSize) {
-        return CommonResp.ok(this.orderService.queryByPage(curPage, pageSize));
+        return CommonResp.ok(this.orderService.queryByPage(memberId, curPage, pageSize));
     }
 
     /**
@@ -54,8 +53,9 @@ public class OrderController {
      * @return 新增结果
      */
     @PostMapping
-    public CommonResp<Order> add(Order order) {
-        return CommonResp.ok(this.orderService.insert(order));
+    public CommonResp<Order> add(@RequestBody Order order) {
+        Order insertResult = this.orderService.insert(order);
+        return CommonResp.ok(insertResult);
     }
 
     /**
