@@ -65,7 +65,7 @@ public class OrderController {
      * @return 编辑结果
      */
     @PutMapping
-    public CommonResp<Order> edit(Order order) {
+    public CommonResp<Order> edit(@RequestBody Order order) {
         return CommonResp.ok(this.orderService.update(order));
     }
 
