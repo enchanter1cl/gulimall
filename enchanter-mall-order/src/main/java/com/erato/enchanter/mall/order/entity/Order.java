@@ -49,19 +49,19 @@ public class Order implements Serializable {
     /**
      * 订单总额
      */
-    private BigDecimal totalAmount = BigDecimal.ZERO;
+    private BigDecimal totalAmount;
     /**
      * 应付总额
      */
-    private BigDecimal payAmount = BigDecimal.ZERO;
+    private BigDecimal payAmount;
     /**
      * 运费金额
      */
-    private BigDecimal freightAmount = BigDecimal.ZERO;
+    private BigDecimal freightAmount;
     /**
      * 促销优化金额（促销价、满减、阶梯价）
      */
-    private BigDecimal promotionAmount = BigDecimal.ZERO;
+    private BigDecimal promotionAmount;
     /**
      * 优惠券抵扣金额
      */
