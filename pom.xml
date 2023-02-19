@@ -17,6 +17,7 @@
     <module>enchanter-mall-common</module>
     <module>enchanter-mall-product</module>
     <module>enchanter-mall-order</module>
+    <module>enchanter-mall-member</module>
   </modules>
 
   <dependencyManagement>
