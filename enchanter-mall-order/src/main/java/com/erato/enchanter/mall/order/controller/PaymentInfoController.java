@@ -1,10 +1,9 @@
 package com.erato.enchanter.mall.order.controller;
 
+import com.erato.enchanter.mall.common.vo.CommonResp;
 import com.erato.enchanter.mall.order.entity.PaymentInfo;
 import com.erato.enchanter.mall.order.service.PaymentInfoService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 
 /**
@@ -30,8 +29,8 @@ public class PaymentInfoController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<PaymentInfo> queryById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(this.paymentInfoService.queryById(id));
+    public CommonResp<PaymentInfo> queryById(@PathVariable("id") Long id) {
+        return CommonResp.ok(this.paymentInfoService.queryById(id));
     }
 
     /**
@@ -41,8 +40,8 @@ public class PaymentInfoController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<PaymentInfo> add(@RequestBody PaymentInfo paymentInfo) {
-        return ResponseEntity.ok(this.paymentInfoService.insert(paymentInfo));
+    public CommonResp<PaymentInfo> add(@RequestBody PaymentInfo paymentInfo) {
+        return CommonResp.ok(this.paymentInfoService.insert(paymentInfo));
     }
 
     /**
@@ -52,8 +51,8 @@ public class PaymentInfoController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<PaymentInfo> edit(@RequestBody PaymentInfo paymentInfo) {
-        return ResponseEntity.ok(this.paymentInfoService.update(paymentInfo));
+    public CommonResp<PaymentInfo> edit(@RequestBody PaymentInfo paymentInfo) {
+        return CommonResp.ok(this.paymentInfoService.update(paymentInfo));
     }
 
     /**
@@ -63,8 +62,8 @@ public class PaymentInfoController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Long id) {
-        return ResponseEntity.ok(this.paymentInfoService.deleteById(id));
+    public CommonResp<Boolean> deleteById(Long id) {
+        return CommonResp.ok(this.paymentInfoService.deleteById(id));
     }
 
 }
