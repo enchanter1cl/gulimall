@@ -47,7 +47,7 @@ public class CategoryController {
      * @return 新增结果
      */
     @PostMapping
-    public CommonResp<Category> add(Category category) {
+    public CommonResp<Category> add(@RequestBody Category category) {
         return CommonResp.ok(this.categoryService.insert(category));
     }
     
@@ -58,7 +58,7 @@ public class CategoryController {
      * @return 编辑结果
      */
     @PutMapping
-    public CommonResp<Category> edit(Category category) {
+    public CommonResp<Category> edit(@RequestBody Category category) {
         return CommonResp.ok(this.categoryService.update(category));
     }
     

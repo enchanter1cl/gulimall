@@ -69,7 +69,7 @@ public class AttrController {
      * @return 新增结果
      */
     @PostMapping
-    public CommonResp<Attr> add(Attr attr) {
+    public CommonResp<Attr> add(@RequestBody Attr attr) {
         return CommonResp.ok(this.attrService.insert(attr));
     }
 
@@ -80,7 +80,7 @@ public class AttrController {
      * @return 编辑结果
      */
     @PutMapping
-    public CommonResp<Attr> edit(Attr attr) {
+    public CommonResp<Attr> edit(@RequestBody Attr attr) {
         return CommonResp.ok(this.attrService.update(attr));
     }
 
