@@ -1,11 +1,10 @@
 package com.erato.enchanter.mall.order.controller;
 
+import com.erato.enchanter.mall.common.vo.CommonResp;
 import com.erato.enchanter.mall.common.vo.PageResp;
 import com.erato.enchanter.mall.order.entity.OrderReturnApply;
 import com.erato.enchanter.mall.order.service.OrderReturnApplyService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 
 /**
@@ -29,11 +28,11 @@ public class OrderReturnApplyController {
      * @return 查询结果
      */
     @GetMapping("/filter")
-    public ResponseEntity<PageResp<OrderReturnApply>> queryByPage(
+    public CommonResp<PageResp<OrderReturnApply>> queryByPage(
             @RequestParam(required = false) String skuName,
             @RequestParam(required = false, defaultValue = "1") int curPage,
             @RequestParam(required = false, defaultValue = "5") int pageSize) {
-        return ResponseEntity.ok(this.orderReturnApplyService.queryByPage(skuName, curPage, pageSize));
+        return CommonResp.ok(this.orderReturnApplyService.queryByPage(skuName, curPage, pageSize));
     }
 
     /**
@@ -43,8 +42,8 @@ public class OrderReturnApplyController {
      * @return 单条数据
      */
     @GetMapping("{id}")
-    public ResponseEntity<OrderReturnApply> queryById(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(this.orderReturnApplyService.queryById(id));
+    public CommonResp<OrderReturnApply> queryById(@PathVariable("id") Long id) {
+        return CommonResp.ok(this.orderReturnApplyService.queryById(id));
     }
 
     /**
@@ -54,8 +53,8 @@ public class OrderReturnApplyController {
      * @return 新增结果
      */
     @PostMapping
-    public ResponseEntity<OrderReturnApply> add(@RequestBody OrderReturnApply orderReturnApply) {
-        return ResponseEntity.ok(this.orderReturnApplyService.insert(orderReturnApply));
+    public CommonResp<OrderReturnApply> add(@RequestBody OrderReturnApply orderReturnApply) {
+        return CommonResp.ok(this.orderReturnApplyService.insert(orderReturnApply));
     }
 
     /**
@@ -65,8 +64,8 @@ public class OrderReturnApplyController {
      * @return 编辑结果
      */
     @PutMapping
-    public ResponseEntity<OrderReturnApply> edit(@RequestBody OrderReturnApply orderReturnApply) {
-        return ResponseEntity.ok(this.orderReturnApplyService.update(orderReturnApply));
+    public CommonResp<OrderReturnApply> edit(@RequestBody OrderReturnApply orderReturnApply) {
+        return CommonResp.ok(this.orderReturnApplyService.update(orderReturnApply));
     }
 
     /**
@@ -76,8 +75,8 @@ public class OrderReturnApplyController {
      * @return 删除是否成功
      */
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteById(Long id) {
-        return ResponseEntity.ok(this.orderReturnApplyService.deleteById(id));
+    public CommonResp<Boolean> deleteById(Long id) {
+        return CommonResp.ok(this.orderReturnApplyService.deleteById(id));
     }
 
 }
