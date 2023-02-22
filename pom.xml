@@ -18,6 +18,7 @@
     <module>enchanter-mall-product</module>
     <module>enchanter-mall-order</module>
     <module>enchanter-mall-member</module>
+    <module>enchanter-mall-ware</module>
   </modules>
 
   <dependencyManagement>
