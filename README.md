@@ -2,7 +2,7 @@
 
 ## Project Introduction 项目介绍
 
-An e-commerce RESTful web application, distributed mcroservices architecture, using SpringBoot framework to achieve.
+An RESTful style e-commerce web application, distributed mcroservices architecture, using SpringBoot framework to achieve.
 
 This is an aggregation project.
 
