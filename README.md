@@ -19,7 +19,7 @@ This is an aggregation project.
 
 ### Data Dictionary 数据字典
 
-https://www.showdoc.com.cn/eratomall/9817645020101202
+https://www.showdoc.com.cn/eratomall/9766240191457512
 
 ### API DOC 接口文档
 
