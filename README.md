@@ -11,6 +11,9 @@ This is an aggregation project.
 ├─enchanter-mall
 │  ├─enchanter-mall-common
 │  ├─enchanter-mall-product
+│  ├─enchanter-mall-member
+│  ├─enchanter-mall-ware
+│  ├─enchanter-mall-coupon
 
 ```
 
